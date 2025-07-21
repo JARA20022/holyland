@@ -830,3 +830,80 @@ main.content-wrapper {
         margin: 0 8px;
     }
 }
+
+/* ----- Responsive para móviles ----- */
+@media (max-width: 768px) {
+    header.hero-section {
+        padding: 20px 10px;
+        text-align: center;
+    }
+
+    .main-logo {
+        width: 80px;
+        margin: 0 auto 10px;
+    }
+
+    .server-title-image {
+        width: 90%;
+        max-width: 300px;
+    }
+
+    .tagline {
+        font-size: 1.1rem;
+        padding: 0 10px;
+    }
+
+    .main-cta-button {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+
+    nav.main-navigation .nav-links-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .nav-slot-button {
+        width: 100%;
+        font-size: 1rem;
+    }
+
+    .info-module {
+        padding: 15px 10px;
+        font-size: 0.95rem;
+    }
+
+    .founders-showcase {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .founder-profile-card {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .ip-display-area {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    footer.footer-area {
+        flex-direction: column;
+        font-size: 0.9rem;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .social-icons-tray {
+        justify-content: center;
+    }
+
+    video.hero-video-background {
+        object-fit: cover;
+        filter: brightness(0.6);
+    }
+}
