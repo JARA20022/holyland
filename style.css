@@ -65,6 +65,8 @@
 html {
     font-size: 100%;
     /* Equivalente a 16px por defecto del navegador */
+    box-sizing: border-box;
+    /* Asegura que el padding y border se incluyan en el ancho/alto total */
 }
 
 body {
@@ -119,8 +121,10 @@ main.content-wrapper {
 /* Hero Section: La pantalla principal */
 .hero-section {
     position: relative;
-    width: 100%;
+    width: 100vw;
+    /* Asegura que ocupe todo el ancho del viewport */
     height: 100vh;
+    /* Asegura que ocupe toda la altura del viewport */
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -313,7 +317,7 @@ main.content-wrapper {
 .nav-links-grid {
     list-style: none;
     padding: 0 10px;
-    /* Padding horizontal para evitar que los botones se peguen a los bordes */
+    /* Padding horizontal para evitar que los botones se pegue a los bordes */
     margin: 0;
     display: flex;
     justify-content: center;
@@ -471,35 +475,21 @@ main.content-wrapper {
     box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.6);
 }
 
-/* El pseudo-elemento ::before para pixel-glow-btn no debería tener un background que solo es un color sólido
-   porque no creará un "glow" perceptible. Si la intención es una capa de color, está bien.
-   Si se busca un "glow" real, se necesita un gradiente radial o box-shadow.
-   Por ahora, se mantiene como está para no cambiar el diseño base.
-*/
 .pixel-glow-btn::before {
-    /* Aquí se asume que este ::before ya existía y no es un error de sintaxis,
-       sino una implementación específica que no hace un "glow" visualmente obvio.
-       Si quieres un glow real, necesitarías algo como un box-shadow o un gradiente radial. */
     content: '';
     position: absolute;
-    /* Asegura que se posicione correctamente */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background: rgba(0, 255, 0, 0.25);
-    /* Color esmeralda semi-transparente */
     z-index: -1;
-    /* Detrás del texto del botón */
     transition: opacity 0.3s ease;
-    /* Transición para el efecto */
     opacity: 0;
-    /* Por defecto invisible */
 }
 
 .pixel-glow-btn:hover::before {
     opacity: 1;
-    /* Se hace visible al pasar el ratón */
 }
 
 /* IP Display Area */
@@ -645,7 +635,7 @@ main.content-wrapper {
         gap: 20px;
         /* Reducido para pantallas de tablet */
         padding: 0 15px;
-        /* Más padding para que los botones no se peguen a los bordes */
+        /* Más padding para que los botones se pegue a los bordes */
     }
 
     .nav-slot-button {
