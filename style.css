@@ -43,6 +43,14 @@
     /* Verde esmeralda brillante */
     --mc-redstone-red: #FF5555;
     /* Rojo para alertas o elementos activos */
+
+    /* Variables para texturas de fondo (corregidas) */
+    --texture-world-bg: url('images/minecraft_dirt_bg.png');
+    /* Asegúrate de que esta imagen exista */
+    --texture-dark-panel-bg: url('images/minecraft_obsidian_texture.png');
+    /* Asegúrate de que esta imagen exista */
+    --texture-panel-bg: url('images/minecraft_stone_texture.png');
+    /* Asegúrate de que esta imagen exista */
 }
 
 /* General Styles & Reset */
@@ -54,6 +62,11 @@
     padding: 0;
 }
 
+html {
+    font-size: 100%;
+    /* Equivalente a 16px por defecto del navegador */
+}
+
 body {
     font-family: 'MinecraftRegular', sans-serif;
     background-color: var(--mc-darkest-stone);
@@ -62,12 +75,15 @@ body {
     color: var(--mc-text-white);
     line-height: 1.6;
     overflow-x: hidden;
+    /* ¡IMPORTANTE! Evita el scroll horizontal y el "zoom" indeseado */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     image-rendering: pixelated;
     -webkit-font-smoothing: none;
     font-smooth: never;
+    padding-bottom: env(safe-area-inset-bottom, 120px);
+    /* Asegura espacio para la nav fija en móviles */
 }
 
 a {
@@ -86,10 +102,8 @@ main.content-wrapper {
     max-width: 1000px;
     margin: 30px auto;
     padding: 0 20px;
+    /* Padding lateral para que el contenido no se pegue a los bordes */
     flex-grow: 1;
-    /* ELIMINADO: La ocultación inicial de main.content-wrapper */
-    /* opacity: 0; */
-    /* transform: translateY(50px); */
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     padding-bottom: 100px;
     /* Espacio para la barra de navegación fija */
@@ -119,6 +133,7 @@ main.content-wrapper {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    /* ¡CLAVE! Esto hace que el video cubra todo el contenedor, ajustándose y "estirándose" correctamente */
     position: absolute;
     top: 0;
     left: 0;
@@ -146,6 +161,8 @@ main.content-wrapper {
     align-items: center;
     justify-content: center;
     padding: 20px;
+    max-width: 95%;
+    /* Asegura que no sea demasiado ancho en pantallas pequeñas */
 }
 
 /* Logo Styling (se mantiene el logo de arriba) */
@@ -260,7 +277,14 @@ main.content-wrapper {
 }
 
 .animated-border-btn::before {
+    content: '';
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    width: 110%;
+    height: 110%;
     background: conic-gradient(from 0deg, transparent 0%, var(--mc-gold-yellow) 20%, transparent 40%, transparent 60%, var(--mc-gold-yellow) 80%, transparent 100%);
+    z-index: -2;
     animation: rotateBorder 3s linear infinite;
 }
 
@@ -288,11 +312,14 @@ main.content-wrapper {
 
 .nav-links-grid {
     list-style: none;
-    padding: 0;
+    padding: 0 10px;
+    /* Padding horizontal para evitar que los botones se peguen a los bordes */
     margin: 0;
     display: flex;
     justify-content: center;
     gap: 40px;
+    flex-wrap: wrap;
+    /* ¡CLAVE! Permite que los elementos se envuelvan a la siguiente línea en pantallas pequeñas */
 }
 
 .nav-slot-button {
@@ -309,6 +336,14 @@ main.content-wrapper {
     align-items: center;
     gap: 12px;
     white-space: nowrap;
+    flex-grow: 1;
+    /* Permite que los botones crezcan para llenar el espacio disponible */
+    flex-basis: auto;
+    /* Base automática, se ajusta con min-width y flex-wrap */
+    min-width: 120px;
+    /* Tamaño mínimo para evitar que se hagan demasiado pequeños en escritorio */
+    max-width: 250px;
+    /* Limitar el ancho máximo para evitar que sean demasiado anchos en escritorio */
 }
 
 .nav-slot-button i {
@@ -436,8 +471,35 @@ main.content-wrapper {
     box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.6);
 }
 
+/* El pseudo-elemento ::before para pixel-glow-btn no debería tener un background que solo es un color sólido
+   porque no creará un "glow" perceptible. Si la intención es una capa de color, está bien.
+   Si se busca un "glow" real, se necesita un gradiente radial o box-shadow.
+   Por ahora, se mantiene como está para no cambiar el diseño base.
+*/
 .pixel-glow-btn::before {
+    /* Aquí se asume que este ::before ya existía y no es un error de sintaxis,
+       sino una implementación específica que no hace un "glow" visualmente obvio.
+       Si quieres un glow real, necesitarías algo como un box-shadow o un gradiente radial. */
+    content: '';
+    position: absolute;
+    /* Asegura que se posicione correctamente */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: rgba(0, 255, 0, 0.25);
+    /* Color esmeralda semi-transparente */
+    z-index: -1;
+    /* Detrás del texto del botón */
+    transition: opacity 0.3s ease;
+    /* Transición para el efecto */
+    opacity: 0;
+    /* Por defecto invisible */
+}
+
+.pixel-glow-btn:hover::before {
+    opacity: 1;
+    /* Se hace visible al pasar el ratón */
 }
 
 /* IP Display Area */
@@ -560,6 +622,7 @@ main.content-wrapper {
 }
 
 /* Media Queries for Responsive Design */
+/* Estos son los ajustes CLAVE para que el responsive funcione bien sin cambiar el diseño */
 @media (max-width: 992px) {
     .main-logo {
         width: 200px;
@@ -579,7 +642,22 @@ main.content-wrapper {
     }
 
     .nav-links-grid {
-        gap: 30px;
+        gap: 20px;
+        /* Reducido para pantallas de tablet */
+        padding: 0 15px;
+        /* Más padding para que los botones no se peguen a los bordes */
+    }
+
+    .nav-slot-button {
+        min-width: unset;
+        /* Permite que el ancho se adapte mejor */
+        max-width: unset;
+        /* Elimina límite de ancho en este rango */
+        flex-grow: 1;
+        /* Permite que crezcan para llenar el espacio */
+        flex-basis: auto;
+        /* Se ajusta automáticamente */
+        font-size: 1.1em;
     }
 
     .module-title {
@@ -588,31 +666,63 @@ main.content-wrapper {
 }
 
 @media (max-width: 768px) {
+    body {
+        font-size: 93.75%;
+        /* Reduce la base para 'em' a 15px */
+    }
+
+    .hero-main-content {
+        max-width: 95%;
+        /* Asegura que el contenido use más espacio */
+        padding: 15px;
+        /* Reduce el padding */
+    }
+
     .main-logo {
-        width: 180px;
+        width: 150px;
+        /* Más pequeño */
     }
 
     .server-title-image {
-        width: 60%;
+        width: 85%;
+        /* Ajustado para que se vea mejor en este rango */
+        max-width: 500px;
     }
 
     .tagline {
-        font-size: 1.4em;
+        font-size: 1.3em;
     }
 
     .main-cta-button {
         padding: 12px 25px;
-        font-size: 1.1em;
+        font-size: 1em;
+    }
+
+    .main-navigation {
+        padding: 15px 0;
+        /* Menos padding vertical en la barra */
     }
 
     .nav-links-grid {
         flex-direction: column;
-        gap: 15px;
+        /* ¡CLAVE! Apila los botones en columna */
+        gap: 10px;
+        /* Reducir el espacio entre ellos */
+        padding: 0 15px;
+        /* Asegurar padding horizontal */
     }
 
     .nav-slot-button {
-        padding: 12px;
-        font-size: 1.1em;
+        width: 100%;
+        /* ¡CLAVE! Ocupar todo el ancho disponible */
+        justify-content: center;
+        /* Centrar el contenido de cada botón */
+        font-size: 1.05em;
+        /* Ajustar tamaño de fuente */
+        padding: 12px 20px;
+        /* Ajustar padding */
+        white-space: nowrap;
+        /* Mantener el texto en una sola línea si es posible */
     }
 
     .info-module {
@@ -620,17 +730,36 @@ main.content-wrapper {
     }
 
     .module-title {
-        font-size: 2.2em;
+        font-size: 2.1em;
+    }
+
+    .module-description {
+        font-size: 1em;
     }
 
     .ip-display-area code {
-        font-size: 1.6em;
+        font-size: 1.5em;
+    }
+
+    .action-button {
+        font-size: 1em;
+        padding: 12px 20px;
+    }
+
+    .founders-showcase {
+        grid-template-columns: 1fr;
+        /* Una columna para fundadores en móviles */
     }
 }
 
 @media (max-width: 480px) {
+    body {
+        font-size: 87.5%;
+        /* Base de 14px para 'em' */
+    }
+
     .main-logo {
-        width: 150px;
+        width: 120px;
         margin-bottom: 20px;
     }
 
@@ -640,44 +769,74 @@ main.content-wrapper {
     }
 
     .tagline {
-        font-size: 1.1em;
-        margin-bottom: 30px;
+        font-size: 1em;
+        margin-bottom: 25px;
     }
 
     .main-cta-button,
     .action-button {
-        padding: 10px 20px;
-        font-size: 1em;
+        padding: 10px 18px;
+        font-size: 0.95em;
     }
 
-    .module-title {
-        font-size: 1.8em;
-    }
-
-    .ip-display-area code {
-        font-size: 1.4em;
-    }
-
-    .founder-avatar {
-        width: 120px;
-        height: 120px;
-    }
-
-    .founder-name {
-        font-size: 1.6em;
-    }
-
-    .social-icons-tray a {
-        font-size: 1.5em;
-        margin: 0 10px;
+    .main-navigation {
+        padding: 10px 0;
     }
 
     .nav-links-grid {
-        gap: 10px;
+        gap: 8px;
+        /* Aún menos gap */
+        padding: 0 10px;
+        /* Aún menos padding */
     }
 
     .nav-slot-button {
-        padding: 10px;
+        font-size: 0.9em;
+        /* Ajustar fuente */
+        padding: 10px 15px;
+        /* Ajustar padding */
+    }
+
+    .info-module {
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+
+    .module-title {
+        font-size: 1.7em;
+        margin-bottom: 10px;
+    }
+
+    .module-title i {
+        margin-right: 8px;
         font-size: 1em;
+    }
+
+    .module-description {
+        font-size: 0.9em;
+        margin-bottom: 20px;
+    }
+
+    .ip-display-area code {
+        font-size: 1.2em;
+        padding: 6px 10px;
+    }
+
+    .founder-avatar {
+        width: 100px;
+        height: 100px;
+    }
+
+    .founder-name {
+        font-size: 1.4em;
+    }
+
+    .founder-role {
+        font-size: 0.85em;
+    }
+
+    .social-icons-tray a {
+        font-size: 1.4em;
+        margin: 0 8px;
     }
 }
