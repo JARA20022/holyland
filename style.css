@@ -84,8 +84,9 @@ body {
     image-rendering: pixelated;
     -webkit-font-smoothing: none;
     font-smooth: never;
-    padding-bottom: clamp(60px, 12vh, 120px);
-    /* Ajuste flexible del padding inferior del body */
+    /* Ajuste el padding-bottom del body para dar espacio a la nav-bar. Este valor será sobrescrito por media queries. */
+    padding-bottom: 90px;
+    /* Valor por defecto para desktop, se ajusta en mobile */
 }
 
 a {
@@ -130,7 +131,6 @@ main.content-wrapper {
     align-items: center;
     text-align: center;
     background-color: var(--mc-darkest-stone);
-    /* padding-bottom: 150px; REMOVED: Managed by hero-main-content padding */
 }
 
 .hero-video-background {
@@ -303,13 +303,13 @@ main.content-wrapper {
     }
 }
 
-
 /* Main Navigation (Fixed Footer Bar) */
 .main-navigation {
     background-color: var(--mc-dark-stone);
     background-image: var(--texture-dark-panel-bg);
     background-repeat: repeat;
-    padding: 20px 0;
+    padding: 10px 0;
+    /* **Reducido el padding vertical por defecto para desktop** */
     border-top: 6px solid var(--mc-darkest-stone);
     position: fixed;
     bottom: 0;
@@ -317,25 +317,33 @@ main.content-wrapper {
     width: 100%;
     z-index: 1000;
     box-shadow: 0 -8px 0px rgba(0, 0, 0, 0.7);
+    min-height: 70px;
+    /* **Ajustado el min-height para desktop** */
+    display: flex;
+    /* Asegura que el contenido se centre */
+    justify-content: center;
+    align-items: center;
 }
 
 .nav-links-grid {
     list-style: none;
-    padding: 0 10px;
-    /* Padding horizontal para evitar que los botones se pegue a los bordes */
+    padding: 0 15px;
+    /* **Ajustado el padding horizontal para más espacio** */
     margin: 0;
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: 20px;
+    /* **Reducido el espacio entre los botones para desktop** */
     flex-wrap: wrap;
-    /* ¡CLAVE! Permite que los elementos se envuelvan a la siguiente línea en pantallas pequeñas */
 }
 
 .nav-slot-button {
     font-family: 'MinecraftBold', sans-serif;
     color: var(--mc-text-white);
-    font-size: 1.25em;
-    padding: 15px 25px;
+    font-size: 1.1em;
+    /* **Tamaño de fuente ligeramente más pequeño para desktop** */
+    padding: 10px 18px;
+    /* **Padding más pequeño para reducir la altura del botón en desktop** */
     background-color: var(--mc-medium-stone);
     border: 4px solid var(--mc-dark-stone);
     box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.6);
@@ -344,21 +352,22 @@ main.content-wrapper {
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
+    /* **Espacio reducido entre icono y texto en desktop** */
     white-space: nowrap;
     flex-grow: 1;
-    /* Permite que los botones crezcan para llenar el espacio disponible */
     flex-basis: auto;
-    /* Base automática, se ajusta con min-width y flex-wrap */
     min-width: 120px;
-    /* Tamaño mínimo para evitar que se hagan demasiado pequeños en escritorio */
-    max-width: 250px;
-    /* Limitar el ancho máximo para evitar que sean demasiado anchos en escritorio */
+    max-width: 200px;
+    /* **Ancho máximo ligeramente reducido para desktop** */
+    justify-content: center;
+    /* Centra el contenido de los botones */
 }
 
 .nav-slot-button i {
     color: var(--mc-emerald-green);
-    font-size: 1.2em;
+    font-size: 1.1em;
+    /* Icono ligeramente más pequeño */
 }
 
 .nav-slot-button:hover {
@@ -637,23 +646,24 @@ main.content-wrapper {
         font-size: 1.2em;
     }
 
+    /* Ajustes de navegación para pantallas de tablet */
     .nav-links-grid {
-        gap: 20px;
-        /* Reducido para pantallas de tablet */
+        gap: 15px;
+        /* **Reducido el gap para tablets** */
         padding: 0 15px;
-        /* Más padding para que los botones se pegue a los bordes */
     }
 
     .nav-slot-button {
         min-width: unset;
-        /* Permite que el ancho se adapte mejor */
         max-width: unset;
-        /* Elimina límite de ancho en este rango */
         flex-grow: 1;
-        /* Permite que crezcan para llenar el espacio */
         flex-basis: auto;
-        /* Se ajusta automáticamente */
-        font-size: 1.1em;
+        font-size: 1em;
+        /* **Fuente más pequeña para tablets** */
+        padding: 8px 15px;
+        /* **Padding más pequeño para botones en tablets** */
+        gap: 6px;
+        /* **Espacio reducido entre icono y texto** */
     }
 
     .module-title {
@@ -665,38 +675,31 @@ main.content-wrapper {
     body {
         font-size: 93.75%;
         /* Reduce la base para 'em' a 15px */
-        padding-bottom: 90px;
-        /* Ajuste para el padding inferior del body en móviles */
+        padding-bottom: 75px;
+        /* **Ajuste del padding inferior del body en móviles para dejar espacio a la nav-bar** */
     }
 
     .hero-main-content {
         max-width: 95%;
-        /* Asegura que el contenido use más espacio */
         padding: 15px;
-        /* Reduce el padding */
-        padding-bottom: 100px;
-        /* Asegura espacio para el botón sobre la nav fija */
+        padding-bottom: 80px;
+        /* **Ajusta este padding para que el botón de CTA no quede cubierto por la nav-bar** */
     }
 
     .main-logo {
         width: 150px;
-        /* Más pequeño */
         margin-bottom: 15px;
-        /* Ajuste de margen */
     }
 
     .server-title-image {
         width: 85%;
-        /* Ajustado para que se vea mejor en este rango */
         max-width: 500px;
         margin-bottom: 25px;
-        /* Ajuste de margen */
     }
 
     .tagline {
         font-size: 1.3em;
         margin-bottom: 30px;
-        /* Ajuste de margen */
     }
 
     .main-cta-button {
@@ -704,31 +707,45 @@ main.content-wrapper {
         font-size: 1em;
     }
 
+    /* Ajustes de navegación para móviles */
     .main-navigation {
-        padding: 15px 0;
-        /* Menos padding vertical en la barra */
+        padding: 8px 0;
+        /* **Menos padding vertical en la barra para móviles** */
+        min-height: 65px;
+        /* **Altura mínima de la barra en móviles** */
     }
 
     .nav-links-grid {
-        flex-direction: column;
-        /* ¡CLAVE! Apila los botones en columna */
-        gap: 10px;
-        /* Reducir el espacio entre ellos */
-        padding: 0 15px;
-        /* Asegurar padding horizontal */
+        flex-direction: row;
+        /* **Mantén los botones en fila para que ocupen menos alto** */
+        flex-wrap: wrap;
+        /* Permite que se envuelvan si no caben */
+        gap: 8px;
+        /* **Reducir el espacio entre ellos en móviles** */
+        padding: 0 8px;
+        /* **Asegurar padding horizontal** */
     }
 
     .nav-slot-button {
-        width: 100%;
-        /* ¡CLAVE! Ocupar todo el ancho disponible */
-        justify-content: center;
-        /* Centrar el contenido de cada botón */
-        font-size: 1.05em;
-        /* Ajustar tamaño de fuente */
-        padding: 12px 20px;
-        /* Ajustar padding */
+        flex-basis: calc(50% - 8px);
+        /* **Hace que los botones ocupen la mitad del ancho (dos por fila)** */
+        font-size: 0.9em;
+        /* **Fuente más pequeña en móvil** */
+        padding: 8px 5px;
+        /* **Padding más pequeño en botones para móvil** */
         white-space: nowrap;
-        /* Mantener el texto en una sola línea si es posible */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        min-width: unset;
+        /* Elimina el min-width para permitir flexibilidad */
+        max-width: unset;
+        /* Elimina el max-width */
+    }
+
+    .nav-slot-button i {
+        font-size: 1em;
+        /* Iconos más pequeños en móvil */
+        margin-bottom: 2px;
     }
 
     .info-module {
@@ -754,104 +771,118 @@ main.content-wrapper {
 
     .founders-showcase {
         grid-template-columns: 1fr;
-        /* Una columna para fundadores en móviles */
     }
 
     video.hero-video-background {
         object-fit: cover;
         filter: brightness(0.6);
-        /* Esto ya estaba, se mantiene para oscurecer el video en móviles */
     }
 }
 
 @media (max-width: 480px) {
     body {
         font-size: 87.5%;
-        /* Base de 14px para 'em' */
-        padding-bottom: 80px;
-        /* Ajuste para el padding inferior del body en móviles pequeños */
+        padding-bottom: 70px;
+        /* **Ajuste para móviles muy pequeños** */
+    }
+
+    .hero-main-content {
+        padding: 10px;
+        padding-bottom: 70px;
+        /* **Ajusta este padding final para el botón de CTA** */
     }
 
     .main-logo {
         width: 120px;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
     }
 
     .server-title-image {
         width: 90%;
         max-width: 350px;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
     }
 
     .tagline {
-        font-size: 1em;
-        margin-bottom: 25px;
+        font-size: 0.9em;
+        margin-bottom: 20px;
     }
 
     .main-cta-button,
     .action-button {
         padding: 10px 18px;
-        font-size: 0.95em;
+        font-size: 0.9em;
     }
 
     .main-navigation {
-        padding: 10px 0;
+        padding: 5px 0;
+        /* **Aún más pequeño el padding en la barra** */
+        min-height: 60px;
+        /* **Altura mínima de la barra en móviles muy pequeños** */
     }
 
     .nav-links-grid {
-        gap: 8px;
-        /* Aún menos gap */
-        padding: 0 10px;
-        /* Aún menos padding */
+        gap: 5px;
+        /* **Espacio mínimo entre botones** */
+        padding: 0 5px;
     }
 
     .nav-slot-button {
+        flex-basis: calc(50% - 5px);
+        /* **Dos botones por fila** */
+        font-size: 0.8em;
+        /* **Fuente muy pequeña, asegúrate de que sea legible** */
+        padding: 6px 3px;
+        /* **Padding mínimo para los botones** */
+        gap: 4px;
+        /* **Espacio entre icono y texto muy pequeño** */
+    }
+
+    .nav-slot-button i {
         font-size: 0.9em;
-        /* Ajustar fuente */
-        padding: 10px 15px;
-        /* Ajustar padding */
+        margin-bottom: 1px;
     }
 
     .info-module {
-        padding: 20px;
-        margin-bottom: 30px;
-    }
-
-    .module-title {
-        font-size: 1.7em;
-        margin-bottom: 10px;
-    }
-
-    .module-title i {
-        margin-right: 8px;
-        font-size: 1em;
-    }
-
-    .module-description {
-        font-size: 0.9em;
+        padding: 15px;
         margin-bottom: 20px;
     }
 
+    .module-title {
+        font-size: 1.5em;
+        margin-bottom: 8px;
+    }
+
+    .module-title i {
+        margin-right: 5px;
+        font-size: 0.9em;
+    }
+
+    .module-description {
+        font-size: 0.8em;
+        margin-bottom: 15px;
+    }
+
     .ip-display-area code {
-        font-size: 1.2em;
-        padding: 6px 10px;
+        font-size: 1em;
+        padding: 5px 8px;
     }
 
     .founder-avatar {
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
     }
 
     .founder-name {
-        font-size: 1.4em;
+        font-size: 1.2em;
     }
 
     .founder-role {
-        font-size: 0.85em;
+        font-size: 0.8em;
     }
 
     .social-icons-tray a {
-        font-size: 1.4em;
-        margin: 0 8px;
+        font-size: 1.2em;
+        margin: 0 6px;
     }
 }
