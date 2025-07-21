@@ -40,14 +40,14 @@
 }
 
 html {
-    /* Esto ayuda a controlar el "zoom" inicial en móviles */
-    font-size: 16px; /* Base para rem */
+    /* Base para rem, ajustado para evitar zoom y mejor escalado */
+    font-size: 100%; /* Equivalente a 16px por defecto del navegador */
 }
 
 body {
     font-family: 'MinecraftRegular', sans-serif;
     background-color: var(--mc-darkest-stone);
-    background-image: var(--texture-world-bg);
+    background-image: var(--texture-world-bg); /* Asumiendo que esta variable está definida en otro lugar o es un placeholder */
     background-repeat: repeat;
     color: var(--mc-text-white);
     line-height: 1.6;
@@ -58,6 +58,8 @@ body {
     image-rendering: pixelated;
     -webkit-font-smoothing: none;
     font-smooth: never;
+    /* Ajustar el padding inferior para asegurar espacio para la barra de navegación fija en iOS y Android */
+    padding-bottom: env(safe-area-inset-bottom, 120px); 
 }
 
 a {
@@ -75,7 +77,7 @@ a:hover {
 main.content-wrapper {
     max-width: 1000px;
     margin: 30px auto;
-    padding: 0 20px;
+    padding: 0 20px; /* Asegura un padding lateral mínimo */
     flex-grow: 1;
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     padding-bottom: 100px; /* Espacio para la barra de navegación fija */
@@ -109,8 +111,7 @@ main.content-wrapper {
     left: 0;
     z-index: 0;
     filter: brightness(0.8) contrast(1.1);
-    /* Mantener el scale(1.02) aquí está bien para evitar bordes si el video es exactamente 100% */
-    transform: scale(1.02);
+    transform: scale(1.02); /* Pequeño zoom para asegurar que cubra bordes */
 }
 
 .hero-overlay-darken {
@@ -132,7 +133,7 @@ main.content-wrapper {
     align-items: center;
     justify-content: center;
     padding: 20px;
-    max-width: 90%; /* Limitar ancho en pantallas pequeñas */
+    max-width: 90%; /* Limitar ancho para evitar desbordamiento en móviles */
 }
 
 /* Logo Styling (se mantiene el logo de arriba) */
@@ -181,7 +182,7 @@ main.content-wrapper {
 
 .tagline {
     font-family: 'MinecraftRegular', sans-serif;
-    font-size: 1.8em;
+    font-size: 1.8em; /* Usar ems para que escale con el font-size base */
     color: var(--mc-text-light-gray);
     margin-bottom: 40px;
     text-shadow: 3px 3px 0 var(--mc-text-shadow-dark);
@@ -205,13 +206,13 @@ main.content-wrapper {
     text-shadow: 3px 3px 0 var(--mc-darkest-stone);
     transition: all 0.1s linear;
     cursor: pointer;
-    font-size: 1.3em;
+    font-size: 1.3em; /* Usar ems */
     position: relative;
     overflow: hidden;
     z-index: 1;
 }
 .main-cta-button i {
-    font-size: 1.4em;
+    font-size: 1.4em; /* Usar ems */
     color: var(--mc-gold-yellow);
 }
 
@@ -255,7 +256,7 @@ main.content-wrapper {
 /* Main Navigation (Fixed Footer Bar) */
 .main-navigation {
     background-color: var(--mc-dark-stone);
-    background-image: var(--texture-dark-panel-bg);
+    background-image: var(--texture-dark-panel-bg); /* Asumiendo que esta variable está definida en otro lugar o es un placeholder */
     background-repeat: repeat;
     padding: 20px 0;
     border-top: 6px solid var(--mc-darkest-stone);
@@ -269,18 +270,18 @@ main.content-wrapper {
 
 .nav-links-grid {
     list-style: none;
-    padding: 0;
+    padding: 0 10px; /* Añadir padding horizontal para evitar que los botones toquen los bordes */
     margin: 0;
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: 40px; /* Mantener un gap por defecto para pantallas grandes */
     flex-wrap: wrap; /* Permite que los elementos se envuelvan a la siguiente línea */
 }
 
 .nav-slot-button {
     font-family: 'MinecraftBold', sans-serif;
     color: var(--mc-text-white);
-    font-size: 1.25em;
+    font-size: 1.25em; /* Usar ems */
     padding: 15px 25px;
     background-color: var(--mc-medium-stone);
     border: 4px solid var(--mc-dark-stone);
@@ -290,15 +291,15 @@ main.content-wrapper {
     display: flex;
     align-items: center;
     gap: 12px;
-    white-space: nowrap;
-    /* Ajuste para que los botones se hagan más pequeños en móviles */
-    flex-grow: 1; /* Permite que crezcan para llenar el espacio */
-    flex-basis: auto; /* Base automática */
-    min-width: 120px; /* Tamaño mínimo para que no se hagan demasiado pequeños */
+    white-space: nowrap; /* Evita que el texto se rompa en múltiples líneas */
+    flex-grow: 1; /* Permite que crezcan para llenar el espacio disponible */
+    flex-basis: auto; /* Base automática, se ajustará con min-width y flex-wrap */
+    min-width: 120px; /* Tamaño mínimo para que no se hagan demasiado pequeños en escritorio */
+    max-width: 250px; /* Limitar el ancho máximo para evitar que sean demasiado anchos en escritorio */
 }
 .nav-slot-button i {
     color: var(--mc-emerald-green);
-    font-size: 1.2em;
+    font-size: 1.2em; /* Usar ems */
 }
 
 .nav-slot-button:hover {
@@ -315,7 +316,7 @@ main.content-wrapper {
 /* Info Modules: Content Blocks */
 .info-module {
     background-color: var(--mc-dark-stone);
-    background-image: var(--texture-panel-bg);
+    background-image: var(--texture-panel-bg); /* Asumiendo que esta variable está definida en otro lugar o es un placeholder */
     background-repeat: repeat;
     padding: 40px;
     margin-bottom: 40px;
@@ -348,7 +349,7 @@ main.content-wrapper {
 
 .module-title {
     font-family: 'MinecraftBold', sans-serif;
-    font-size: 3em;
+    font-size: 3em; /* Usar ems */
     color: var(--mc-gold-yellow);
     text-shadow: 3px 3px 0px var(--mc-darkest-stone);
     margin-bottom: 15px;
@@ -356,7 +357,7 @@ main.content-wrapper {
 .module-title i {
     margin-right: 15px;
     color: var(--mc-emerald-green);
-    font-size: 1.2em;
+    font-size: 1.2em; /* Usar ems */
 }
 
 .header-line {
@@ -369,7 +370,7 @@ main.content-wrapper {
 
 .module-description {
     font-family: 'MinecraftRegular', sans-serif;
-    font-size: 1.2em;
+    font-size: 1.2em; /* Usar ems */
     color: var(--mc-text-light-gray);
     margin-bottom: 30px;
     text-shadow: 2px 2px 0 var(--mc-text-shadow-dark);
@@ -388,10 +389,10 @@ main.content-wrapper {
     text-shadow: 2px 2px 0 var(--mc-darkest-stone);
     transition: all 0.1s linear;
     cursor: pointer;
-    font-size: 1.1em;
+    font-size: 1.1em; /* Usar ems */
 }
 .action-button i {
-    font-size: 1.2em;
+    font-size: 1.2em; /* Usar ems */
     color: var(--mc-gold-yellow);
 }
 
@@ -426,7 +427,7 @@ main.content-wrapper {
 
 .ip-display-area code {
     font-family: 'MinecraftBold', monospace;
-    font-size: 1.8em;
+    font-size: 1.8em; /* Usar ems */
     color: var(--holyland-land-white);
     letter-spacing: 2px;
     text-shadow: 3px 3px 0px var(--mc-darkest-stone);
@@ -446,7 +447,7 @@ main.content-wrapper {
 
 .founder-profile-card {
     background-color: var(--mc-dark-stone);
-    background-image: var(--texture-panel-bg);
+    background-image: var(--texture-panel-bg); /* Asumiendo que esta variable está definida en otro lugar o es un placeholder */
     background-repeat: repeat;
     padding: 25px;
     border: 4px solid var(--mc-darkest-stone);
@@ -477,7 +478,7 @@ main.content-wrapper {
 .founder-name {
     font-family: 'MinecraftBold', sans-serif;
     color: var(--mc-gold-yellow);
-    font-size: 1.8em;
+    font-size: 1.8em; /* Usar ems */
     margin-bottom: 8px;
     text-shadow: 2px 2px 0px var(--mc-darkest-stone);
 }
@@ -485,21 +486,21 @@ main.content-wrapper {
 .founder-role {
     font-family: 'MinecraftRegular', sans-serif;
     color: var(--mc-text-light-gray);
-    font-size: 1.1em;
+    font-size: 1.1em; /* Usar ems */
     text-shadow: 1px 1px 0px var(--mc-darkest-stone);
 }
 
 /* Footer Area */
 .footer-area {
     background-color: var(--mc-darkest-stone);
-    background-image: var(--texture-dark-panel-bg);
+    background-image: var(--texture-dark-panel-bg); /* Asumiendo que esta variable está definida en otro lugar o es un placeholder */
     background-repeat: repeat;
     text-align: center;
     padding: 30px;
     margin-top: 50px;
     border-top: 6px solid var(--mc-darkest-stone);
     color: var(--mc-text-light-gray);
-    font-size: 1em;
+    font-size: 1em; /* Usar ems */
     box-shadow: 0 -6px 0px rgba(0,0,0,0.6);
     text-shadow: 1px 1px 0 var(--mc-darkest-stone);
 }
@@ -516,7 +517,7 @@ main.content-wrapper {
 }
 .social-icons-tray a {
     color: var(--mc-text-light-gray);
-    font-size: 1.8em;
+    font-size: 1.8em; /* Usar ems */
     margin: 0 12px;
     transition: color 0.2s ease, transform 0.2s ease;
 }
@@ -528,115 +529,139 @@ main.content-wrapper {
 /* Media Queries for Responsive Design */
 @media (max-width: 992px) {
     .main-logo {
-        width: 200px;
+        width: 180px; /* Un poco más pequeño */
     }
     .server-title-image {
-        width: 70%;
+        width: 75%; /* Ajustar un poco más */
     }
     .tagline {
-        font-size: 1.6em;
+        font-size: 1.5em; /* Ajustar fuente */
     }
     .main-cta-button {
-        padding: 15px 30px;
-        font-size: 1.2em;
-    }
-    .nav-links-grid {
-        gap: 30px;
+        padding: 15px 25px;
+        font-size: 1.1em;
     }
     .module-title {
-        font-size: 2.5em;
+        font-size: 2.3em;
     }
 }
 
 @media (max-width: 768px) {
+    /* Aquí necesitamos una reestructuración más fuerte para el menú de navegación */
+    .hero-main-content {
+        max-width: 95%; /* Permitir que el contenido use más ancho */
+        padding: 15px; /* Reducir padding */
+    }
+
     .main-logo {
-        width: 180px;
+        width: 150px; /* Más pequeño */
     }
     .server-title-image {
-        width: 60%;
+        width: 85%; /* Más grande para llenar el espacio */
     }
     .tagline {
-        font-size: 1.4em;
+        font-size: 1.2em;
     }
     .main-cta-button {
-        padding: 12px 25px;
-        font-size: 1.1em;
+        padding: 12px 20px;
+        font-size: 1em;
+    }
+
+    .main-navigation {
+        padding: 15px 0; /* Menos padding en la barra */
     }
     .nav-links-grid {
-        flex-direction: row; /* Mantener en fila, pero ahora con wrap */
-        flex-wrap: wrap; /* Permitir que los elementos se envuelvan */
-        gap: 10px; /* Reducir el espacio entre botones */
-        justify-content: center; /* Centrar los botones cuando se envuelven */
+        flex-direction: column; /* Apilar los botones en columna */
+        gap: 10px; /* Reducir el espacio entre ellos */
+        padding: 0 15px; /* Asegurar padding horizontal */
     }
     .nav-slot-button {
-        padding: 12px;
-        font-size: 1.0em; /* Hacer la fuente un poco más pequeña */
-        flex-basis: calc(50% - 15px); /* Dos columnas en pantallas pequeñas, restando el gap */
-        max-width: calc(50% - 15px); /* Limitar el ancho para asegurar dos columnas */
-        min-width: unset; /* Quitar el min-width global para permitir más flexibilidad */
+        width: 100%; /* Ocupar todo el ancho disponible */
+        max-width: 100%; /* Anular cualquier max-width anterior */
+        justify-content: center; /* Centrar el contenido de cada botón */
+        font-size: 1.1em; /* Ajustar tamaño de fuente */
+        padding: 12px 20px; /* Ajustar padding */
+        white-space: normal; /* Permitir que el texto se envuelva si es muy largo, aunque nowrap es preferible */
     }
+
     .info-module {
-        padding: 30px;
+        padding: 25px;
     }
     .module-title {
-        font-size: 2.2em;
+        font-size: 1.9em;
+    }
+    .module-description {
+        font-size: 1em;
     }
     .ip-display-area code {
-        font-size: 1.6em;
+        font-size: 1.4em;
+    }
+    .action-button {
+        font-size: 1em;
+        padding: 12px 20px;
     }
 }
 
 @media (max-width: 480px) {
     html {
-        font-size: 14px; /* Reducir la base de la fuente para pantallas muy pequeñas */
+        font-size: 87.5%; /* Base de 14px (14/16 = 0.875) */
     }
     .main-logo {
-        width: 150px;
-        margin-bottom: 20px;
+        width: 120px;
     }
     .server-title-image {
-        width: 90%;
-        max-width: 350px;
+        width: 95%;
     }
     .tagline {
-        font-size: 1.1em;
-        margin-bottom: 30px;
+        font-size: 1em; /* Más pequeño */
+        margin-bottom: 25px;
     }
-    .main-cta-button, .action-button {
-        padding: 10px 20px;
-        font-size: 1em;
+    .main-cta-button {
+        padding: 10px 18px;
+        font-size: 0.9em;
     }
-    .module-title {
-        font-size: 1.8em;
-    }
-    .ip-display-area code {
-        font-size: 1.4em;
-    }
-    .founder-avatar {
-        width: 120px;
-        height: 120px;
-    }
-    .founder-name {
-        font-size: 1.6em;
-    }
-    .social-icons-tray a {
-        font-size: 1.5em;
-        margin: 0 10px;
+
+    .main-navigation {
+        padding: 10px 0; /* Aún menos padding */
     }
     .nav-links-grid {
-        gap: 8px; /* Reducir aún más el espacio */
+        gap: 8px; /* Aún menos gap */
+        padding: 0 10px; /* Aún menos padding */
     }
     .nav-slot-button {
-        padding: 10px;
-        font-size: 0.9em; /* Fuente más pequeña */
-        flex-basis: calc(50% - 10px); /* Asegurar dos columnas, ajustar gap */
-        max-width: calc(50% - 10px);
+        font-size: 0.95em; /* Ajustar fuente */
+        padding: 10px 15px; /* Ajustar padding */
     }
-    /* Si se quiere una columna en las pantallas más pequeñas (opcional) */
-    /* @media (max-width: 360px) {
-        .nav-slot-button {
-            flex-basis: 100%;
-            max-width: 100%;
-        }
-    } */
+
+    .info-module {
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+    .module-title {
+        font-size: 1.6em;
+    }
+    .module-description {
+        font-size: 0.9em;
+    }
+    .ip-display-area code {
+        font-size: 1.2em;
+    }
+    .action-button {
+        font-size: 0.9em;
+        padding: 10px 18px;
+    }
+    .founder-avatar {
+        width: 100px;
+        height: 100px;
+    }
+    .founder-name {
+        font-size: 1.4em;
+    }
+    .founder-role {
+        font-size: 0.9em;
+    }
+    .social-icons-tray a {
+        font-size: 1.4em;
+        margin: 0 8px;
+    }
 }
