@@ -1,0 +1,683 @@
+/* Custom Minecraft Font Import */
+@font-face {
+    font-family: 'MinecraftRegular';
+    src: url('fonts/MinecraftRegular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MinecraftBold';
+    src: url('fonts/MinecraftBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* Minecraft Color Palette & UI Variables (REFINADOS) */
+:root {
+    /* Tonos de piedra/gris de Minecraft para UI */
+    --mc-darkest-stone: #1A1A1A;
+    /* Casi negro, para bordes y sombras muy profundas */
+    --mc-dark-stone: #333333;
+    /* Base oscura para paneles y elementos */
+    --mc-medium-stone: #555555;
+    /* Gris medio para botones y superficies */
+    --mc-light-stone: #808080;
+    /* Gris claro para hover y elementos activos */
+
+    --mc-text-white: #FFFFFF;
+    /* Texto principal */
+    --mc-text-light-gray: #E0E0E0;
+    /* Texto secundario */
+    --mc-text-shadow-dark: rgba(0, 0, 0, 0.8);
+    /* Sombra de texto fuerte */
+
+    /* Colores primarios del logo y acentos vibrantes */
+    --holyland-holy-blue: #00BFFF;
+    /* Azul vibrante de HOLY */
+    --holyland-land-white: #FFFFFF;
+    /* Blanco de LAND */
+    --mc-gold-yellow: #FFD700;
+    /* Amarillo oro para detalles importantes */
+    --mc-emerald-green: #00CC00;
+    /* Verde esmeralda brillante */
+    --mc-redstone-red: #FF5555;
+    /* Rojo para alertas o elementos activos */
+}
+
+/* General Styles & Reset */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'MinecraftRegular', sans-serif;
+    background-color: var(--mc-darkest-stone);
+    background-image: var(--texture-world-bg);
+    background-repeat: repeat;
+    color: var(--mc-text-white);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    image-rendering: pixelated;
+    -webkit-font-smoothing: none;
+    font-smooth: never;
+}
+
+a {
+    color: var(--holyland-holy-blue);
+    text-decoration: none;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+    text-shadow: 1px 1px 0 var(--mc-text-shadow-dark);
+}
+
+a:hover {
+    color: var(--holyland-land-white);
+    text-shadow: 2px 2px 0 var(--mc-text-shadow-dark);
+}
+
+main.content-wrapper {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 0 20px;
+    flex-grow: 1;
+    /* ELIMINADO: La ocultación inicial de main.content-wrapper */
+    /* opacity: 0; */
+    /* transform: translateY(50px); */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    padding-bottom: 100px;
+    /* Espacio para la barra de navegación fija */
+}
+
+/* Solo los módulos individuales se ocultan inicialmente para la animación de entrada */
+.hidden-initially {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Hero Section: La pantalla principal */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: var(--mc-darkest-stone);
+}
+
+.hero-video-background {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    filter: brightness(0.8) contrast(1.1);
+    transform: scale(1.02);
+}
+
+.hero-overlay-darken {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.3) 70%, rgba(0, 0, 0, 0.5) 100%);
+    z-index: 1;
+}
+
+/* Contenedor principal de logo y texto */
+.hero-main-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Logo Styling (se mantiene el logo de arriba) */
+.main-logo {
+    width: 250px;
+    height: auto;
+    margin-bottom: 25px;
+    filter: drop-shadow(6px 6px 3px rgba(0, 0, 0, 0.8));
+    image-rendering: crisp-edges;
+    animation: fadeInScale 1.2s ease-out forwards;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ESTILOS PARA LA IMAGEN DEL TÍTULO (holyland.png) */
+.server-title-image {
+    width: 80%;
+    max-width: 800px;
+    height: auto;
+    margin-bottom: 30px;
+    filter: drop-shadow(8px 8px 4px rgba(0, 0, 0, 0.9)) drop-shadow(-4px -4px 2px rgba(255, 255, 255, 0.2));
+    image-rendering: crisp-edges;
+    animation: fadeInSlideUp 1.5s ease-out forwards;
+}
+
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.tagline {
+    font-family: 'MinecraftRegular', sans-serif;
+    font-size: 1.8em;
+    color: var(--mc-text-light-gray);
+    margin-bottom: 40px;
+    text-shadow: 3px 3px 0 var(--mc-text-shadow-dark);
+    letter-spacing: 1px;
+}
+
+.call-to-action {
+    margin-top: 20px;
+}
+
+.main-cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'MinecraftBold', sans-serif;
+    background-color: var(--mc-medium-stone);
+    color: var(--mc-text-white);
+    padding: 18px 35px;
+    border: 5px solid var(--mc-dark-stone);
+    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.7);
+    text-shadow: 3px 3px 0 var(--mc-darkest-stone);
+    transition: all 0.1s linear;
+    cursor: pointer;
+    font-size: 1.3em;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.main-cta-button i {
+    font-size: 1.4em;
+    color: var(--mc-gold-yellow);
+}
+
+.main-cta-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+    z-index: -1;
+}
+
+.main-cta-button:hover::after {
+    transform: translateX(100%);
+}
+
+.main-cta-button:hover {
+    background-color: var(--mc-light-stone);
+    transform: translate(3px, 3px);
+    box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.7);
+}
+
+.main-cta-button:active {
+    background-color: var(--mc-dark-stone);
+    transform: translate(8px, 8px);
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.6);
+}
+
+.animated-border-btn::before {
+    background: conic-gradient(from 0deg, transparent 0%, var(--mc-gold-yellow) 20%, transparent 40%, transparent 60%, var(--mc-gold-yellow) 80%, transparent 100%);
+    animation: rotateBorder 3s linear infinite;
+}
+
+@keyframes rotateBorder {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* Main Navigation (Fixed Footer Bar) */
+.main-navigation {
+    background-color: var(--mc-dark-stone);
+    background-image: var(--texture-dark-panel-bg);
+    background-repeat: repeat;
+    padding: 20px 0;
+    border-top: 6px solid var(--mc-darkest-stone);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 -8px 0px rgba(0, 0, 0, 0.7);
+}
+
+.nav-links-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.nav-slot-button {
+    font-family: 'MinecraftBold', sans-serif;
+    color: var(--mc-text-white);
+    font-size: 1.25em;
+    padding: 15px 25px;
+    background-color: var(--mc-medium-stone);
+    border: 4px solid var(--mc-dark-stone);
+    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.6);
+    text-shadow: 2px 2px 0 var(--mc-darkest-stone);
+    transition: all 0.1s linear;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    white-space: nowrap;
+}
+
+.nav-slot-button i {
+    color: var(--mc-emerald-green);
+    font-size: 1.2em;
+}
+
+.nav-slot-button:hover {
+    background-color: var(--mc-light-stone);
+    transform: translate(3px, 3px);
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.6);
+}
+
+.nav-slot-button:active {
+    background-color: var(--mc-dark-stone);
+    transform: translate(6px, 6px);
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.6);
+}
+
+/* Info Modules: Content Blocks */
+.info-module {
+    background-color: var(--mc-dark-stone);
+    background-image: var(--texture-panel-bg);
+    background-repeat: repeat;
+    padding: 40px;
+    margin-bottom: 40px;
+    border: 5px solid var(--mc-darkest-stone);
+    box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.8);
+    text-align: center;
+    transition: transform 0.2s linear, box-shadow 0.2s linear;
+    position: relative;
+}
+
+.info-module::before,
+.info-module::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: var(--mc-darkest-stone);
+}
+
+.info-module::before {
+    top: -5px;
+    left: -5px;
+}
+
+.info-module::after {
+    bottom: -5px;
+    right: -5px;
+}
+
+
+.info-module:hover {
+    transform: translateY(-8px);
+    box-shadow: 12px 12px 0px rgba(0, 0, 0, 0.9);
+}
+
+.module-header {
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.module-title {
+    font-family: 'MinecraftBold', sans-serif;
+    font-size: 3em;
+    color: var(--mc-gold-yellow);
+    text-shadow: 3px 3px 0px var(--mc-darkest-stone);
+    margin-bottom: 15px;
+}
+
+.module-title i {
+    margin-right: 15px;
+    color: var(--mc-emerald-green);
+    font-size: 1.2em;
+}
+
+.header-line {
+    width: 100px;
+    height: 6px;
+    background-color: var(--mc-redstone-red);
+    margin: 0 auto;
+    box-shadow: 2px 2px 0px var(--mc-text-shadow-dark);
+}
+
+.module-description {
+    font-family: 'MinecraftRegular', sans-serif;
+    font-size: 1.2em;
+    color: var(--mc-text-light-gray);
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 0 var(--mc-text-shadow-dark);
+}
+
+.action-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'MinecraftBold', sans-serif;
+    background-color: var(--mc-medium-stone);
+    color: var(--mc-text-white);
+    padding: 15px 30px;
+    border: 4px solid var(--mc-dark-stone);
+    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.6);
+    text-shadow: 2px 2px 0 var(--mc-darkest-stone);
+    transition: all 0.1s linear;
+    cursor: pointer;
+    font-size: 1.1em;
+}
+
+.action-button i {
+    font-size: 1.2em;
+    color: var(--mc-gold-yellow);
+}
+
+.action-button:hover {
+    background-color: var(--mc-light-stone);
+    transform: translate(3px, 3px);
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.6);
+}
+
+.action-button:active {
+    background-color: var(--mc-dark-stone);
+    transform: translate(6px, 6px);
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.6);
+}
+
+.pixel-glow-btn::before {
+    background: rgba(0, 255, 0, 0.25);
+}
+
+/* IP Display Area */
+.ip-display-area {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 30px;
+    background-color: var(--mc-dark-stone);
+    padding: 20px 30px;
+    border: 4px solid var(--mc-darkest-stone);
+    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.7);
+}
+
+.ip-display-area code {
+    font-family: 'MinecraftBold', monospace;
+    font-size: 1.8em;
+    color: var(--holyland-land-white);
+    letter-spacing: 2px;
+    text-shadow: 3px 3px 0px var(--mc-darkest-stone);
+    padding: 8px 15px;
+    border: 3px dotted var(--mc-gold-yellow);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Fundadores Showcase */
+.founders-showcase {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+    justify-content: center;
+}
+
+.founder-profile-card {
+    background-color: var(--mc-dark-stone);
+    background-image: var(--texture-panel-bg);
+    background-repeat: repeat;
+    padding: 25px;
+    border: 4px solid var(--mc-darkest-stone);
+    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    transition: transform 0.2s linear, box-shadow 0.2s linear;
+}
+
+.founder-profile-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.8);
+}
+
+.founder-avatar {
+    width: 140px;
+    height: 140px;
+    border: 5px solid var(--mc-gold-yellow);
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.6);
+    margin-bottom: 20px;
+    image-rendering: pixelated;
+    transform: scale(1);
+    transition: transform 0.2s ease;
+}
+
+.founder-avatar:hover {
+    transform: scale(1.08);
+}
+
+.founder-name {
+    font-family: 'MinecraftBold', sans-serif;
+    color: var(--mc-gold-yellow);
+    font-size: 1.8em;
+    margin-bottom: 8px;
+    text-shadow: 2px 2px 0px var(--mc-darkest-stone);
+}
+
+.founder-role {
+    font-family: 'MinecraftRegular', sans-serif;
+    color: var(--mc-text-light-gray);
+    font-size: 1.1em;
+    text-shadow: 1px 1px 0px var(--mc-darkest-stone);
+}
+
+/* Footer Area */
+.footer-area {
+    background-color: var(--mc-darkest-stone);
+    background-image: var(--texture-dark-panel-bg);
+    background-repeat: repeat;
+    text-align: center;
+    padding: 30px;
+    margin-top: 50px;
+    border-top: 6px solid var(--mc-darkest-stone);
+    color: var(--mc-text-light-gray);
+    font-size: 1em;
+    box-shadow: 0 -6px 0px rgba(0, 0, 0, 0.6);
+    text-shadow: 1px 1px 0 var(--mc-darkest-stone);
+}
+
+.footer-area .holyland-holy {
+    color: var(--holyland-holy-blue);
+}
+
+.footer-area .holyland-land {
+    color: var(--holyland-land-white);
+}
+
+.social-icons-tray {
+    margin-top: 20px;
+}
+
+.social-icons-tray a {
+    color: var(--mc-text-light-gray);
+    font-size: 1.8em;
+    margin: 0 12px;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.social-icons-tray a:hover {
+    color: var(--mc-gold-yellow);
+    transform: translateY(-5px);
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 992px) {
+    .main-logo {
+        width: 200px;
+    }
+
+    .server-title-image {
+        width: 70%;
+    }
+
+    .tagline {
+        font-size: 1.6em;
+    }
+
+    .main-cta-button {
+        padding: 15px 30px;
+        font-size: 1.2em;
+    }
+
+    .nav-links-grid {
+        gap: 30px;
+    }
+
+    .module-title {
+        font-size: 2.5em;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-logo {
+        width: 180px;
+    }
+
+    .server-title-image {
+        width: 60%;
+    }
+
+    .tagline {
+        font-size: 1.4em;
+    }
+
+    .main-cta-button {
+        padding: 12px 25px;
+        font-size: 1.1em;
+    }
+
+    .nav-links-grid {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-slot-button {
+        padding: 12px;
+        font-size: 1.1em;
+    }
+
+    .info-module {
+        padding: 30px;
+    }
+
+    .module-title {
+        font-size: 2.2em;
+    }
+
+    .ip-display-area code {
+        font-size: 1.6em;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-logo {
+        width: 150px;
+        margin-bottom: 20px;
+    }
+
+    .server-title-image {
+        width: 90%;
+        max-width: 350px;
+    }
+
+    .tagline {
+        font-size: 1.1em;
+        margin-bottom: 30px;
+    }
+
+    .main-cta-button,
+    .action-button {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+
+    .module-title {
+        font-size: 1.8em;
+    }
+
+    .ip-display-area code {
+        font-size: 1.4em;
+    }
+
+    .founder-avatar {
+        width: 120px;
+        height: 120px;
+    }
+
+    .founder-name {
+        font-size: 1.6em;
+    }
+
+    .social-icons-tray a {
+        font-size: 1.5em;
+        margin: 0 10px;
+    }
+
+    .nav-links-grid {
+        gap: 10px;
+    }
+
+    .nav-slot-button {
+        padding: 10px;
+        font-size: 1em;
+    }
+}

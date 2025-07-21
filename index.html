@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOLYLAND - Tu Portal de Aventura</title>
+    <link rel="icon" type="image/png" href="images/holyland_logo.png">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <header class="hero-section minecraft-world-bg">
+        <video class="hero-video-background" src="videos/video1.mp4" autoplay muted loop playsinline></video>
+
+        <div class="hero-overlay-darken"></div>
+
+        <div class="hero-main-content">
+            <img src="images/holyland_logo.png" alt="Logo de HOLYLAND" class="main-logo">
+
+            <img src="images/holyland.png" alt="Título HOLYLAND" class="server-title-image">
+
+            <p class="tagline">¡El portal a tu próxima gran aventura!</p>
+            <div class="call-to-action">
+                <a href="#ip" class="main-cta-button animated-border-btn">¡Conéctate Ahora! <i
+                        class="fas fa-play"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <nav class="main-navigation minecraft-gui-panel">
+        <ul class="nav-links-grid">
+            <li><a href="#discord" class="nav-slot-button"><i class="fab fa-discord"></i> Discord</a></li>
+            <li><a href="#ip" class="nav-slot-button"><i class="fas fa-map-marker-alt"></i> IP Server</a></li>
+            <li><a href="#tienda" class="nav-slot-button"><i class="fas fa-gem"></i> Tienda</a></li>
+            <li><a href="#fundadores" class="nav-slot-button"><i class="fas fa-crown"></i> Fundadores</a></li>
+        </ul>
+    </nav>
+
+    <main class="content-wrapper">
+        <section id="discord" class="info-module minecraft-block-panel hidden-initially">
+            <div class="module-header">
+                <h2 class="module-title"><i class="fab fa-discord"></i> Nuestro Nexo en Discord</h2>
+                <div class="header-line"></div>
+            </div>
+            <p class="module-description">Únete a nuestra vibrante comunidad en Discord. ¡Participa en eventos,
+                encuentra compañeros de equipo y sé el primero en enterarte de las novedades de HOLYLAND!</p>
+            <a href="https://discord.com/invite/KjY9WAUC85" target="_blank" class="action-button pixel-glow-btn">
+                <span class="button-text">Unirse al Canal</span> <i class="fas fa-sign-in-alt"></i>
+            </a>
+        </section>
+
+        <section id="ip" class="info-module minecraft-block-panel hidden-initially">
+            <div class="module-header">
+                <h2 class="module-title"><i class="fas fa-server"></i> La Puerta a HOLYLAND</h2>
+                <div class="header-line"></div>
+            </div>
+            <p class="module-description">Conéctate y comienza tu aventura épica. ¡Estamos listos para darte la
+                bienvenida a un mundo lleno de posibilidades!</p>
+            <div class="ip-display-area">
+                <code id="serverIp" data-text="play.holylandmc.com">play.holylandmc.com</code>
+                <button class="action-button pixel-glow-btn copy-ip-btn">
+                    <span class="button-text">Copiar IP</span> <i class="fas fa-clipboard"></i>
+                </button>
+            </div>
+        </section>
+
+        <section id="tienda" class="info-module minecraft-block-panel hidden-initially">
+            <div class="module-header">
+                <h2 class="module-title"><i class="fas fa-gem"></i> Tienda</h2>
+                <div class="header-line"></div>
+            </div>
+            <p class="module-description">Apoya el servidor adquiriendo rangos con beneficios exclusivos. ¡Cada rango te
+                brinda ventajas únicas para mejorar tu experiencia en HOLYLAND!</p>
+            <a href="https://tienda.holylandmc.com" target="_blank" class="action-button pixel-glow-btn">
+                <span class="button-text">Explorar la Tienda</span> <i class="fas fa-shopping-cart"></i>
+            </a>
+        </section>
+
+        <section id="fundadores" class="info-module minecraft-block-panel hidden-initially">
+            <div class="module-header">
+                <h2 class="module-title"><i class="fas fa-scroll"></i> Los Fundadores de HOLYLAND</h2>
+                <div class="header-line"></div>
+            </div>
+            <p class="module-description">Conoce a los héroes que forjaron este reino. Su visión y esfuerzo construyeron
+                el mundo que hoy exploras.</p>
+            <div class="founders-showcase">
+                <div class="founder-profile-card">
+                    <img src="https://mc-heads.net/avatar/TuoGamer/140" alt="Avatar JaraMC"
+                        class="founder-avatar pixelated-image">
+                    <h3 class="founder-name">JaraMC</h3>
+                    <p class="founder-role">Fundador</p>
+                </div>
+                <div class="founder-profile-card">
+                    <img src="https://mc-heads.net/avatar/Yosefg17/140" alt="Avatar Yosefg17"
+                        class="founder-avatar pixelated-image">
+                    <h3 class="founder-name">Yosefg17</h3>
+                    <p class="founder-role">Fundador</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer-area minecraft-gui-footer">
+        <p>&copy; 2025 <span class="holyland-holy">HOLY</span><span class="holyland-land">LAND</span> - Un proyecto de
+            la comunidad.</p>
+        <div class="social-icons-tray">
+            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
