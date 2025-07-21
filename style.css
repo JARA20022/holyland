@@ -5,7 +5,6 @@
     font-weight: normal;
     font-style: normal;
 }
-
 @font-face {
     font-family: 'MinecraftBold';
     src: url('fonts/MinecraftBold.ttf') format('truetype');
@@ -16,42 +15,33 @@
 /* Minecraft Color Palette & UI Variables (REFINADOS) */
 :root {
     /* Tonos de piedra/gris de Minecraft para UI */
-    --mc-darkest-stone: #1A1A1A;
-    /* Casi negro, para bordes y sombras muy profundas */
-    --mc-dark-stone: #333333;
-    /* Base oscura para paneles y elementos */
-    --mc-medium-stone: #555555;
-    /* Gris medio para botones y superficies */
-    --mc-light-stone: #808080;
-    /* Gris claro para hover y elementos activos */
-
-    --mc-text-white: #FFFFFF;
-    /* Texto principal */
-    --mc-text-light-gray: #E0E0E0;
-    /* Texto secundario */
-    --mc-text-shadow-dark: rgba(0, 0, 0, 0.8);
-    /* Sombra de texto fuerte */
+    --mc-darkest-stone: #1A1A1A;   /* Casi negro, para bordes y sombras muy profundas */
+    --mc-dark-stone: #333333;      /* Base oscura para paneles y elementos */
+    --mc-medium-stone: #555555;    /* Gris medio para botones y superficies */
+    --mc-light-stone: #808080;     /* Gris claro para hover y elementos activos */
+    
+    --mc-text-white: #FFFFFF;     /* Texto principal */
+    --mc-text-light-gray: #E0E0E0; /* Texto secundario */
+    --mc-text-shadow-dark: rgba(0, 0, 0, 0.8); /* Sombra de texto fuerte */
 
     /* Colores primarios del logo y acentos vibrantes */
-    --holyland-holy-blue: #00BFFF;
-    /* Azul vibrante de HOLY */
-    --holyland-land-white: #FFFFFF;
-    /* Blanco de LAND */
-    --mc-gold-yellow: #FFD700;
-    /* Amarillo oro para detalles importantes */
-    --mc-emerald-green: #00CC00;
-    /* Verde esmeralda brillante */
-    --mc-redstone-red: #FF5555;
-    /* Rojo para alertas o elementos activos */
+    --holyland-holy-blue: #00BFFF;   /* Azul vibrante de HOLY */
+    --holyland-land-white: #FFFFFF;  /* Blanco de LAND */
+    --mc-gold-yellow: #FFD700;       /* Amarillo oro para detalles importantes */
+    --mc-emerald-green: #00CC00;     /* Verde esmeralda brillante */
+    --mc-redstone-red: #FF5555;      /* Rojo para alertas o elementos activos */
 }
 
 /* General Styles & Reset */
-*,
-*::before,
-*::after {
+*, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+html {
+    /* Esto ayuda a controlar el "zoom" inicial en móviles */
+    font-size: 16px; /* Base para rem */
 }
 
 body {
@@ -61,7 +51,7 @@ body {
     background-repeat: repeat;
     color: var(--mc-text-white);
     line-height: 1.6;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Evita el scroll horizontal */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -87,15 +77,10 @@ main.content-wrapper {
     margin: 30px auto;
     padding: 0 20px;
     flex-grow: 1;
-    /* ELIMINADO: La ocultación inicial de main.content-wrapper */
-    /* opacity: 0; */
-    /* transform: translateY(50px); */
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    padding-bottom: 100px;
-    /* Espacio para la barra de navegación fija */
+    padding-bottom: 100px; /* Espacio para la barra de navegación fija */
 }
 
-/* Solo los módulos individuales se ocultan inicialmente para la animación de entrada */
 .hidden-initially {
     opacity: 0;
     transform: translateY(50px);
@@ -118,12 +103,13 @@ main.content-wrapper {
 .hero-video-background {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* Asegura que el video cubra toda la pantalla */
     position: absolute;
     top: 0;
     left: 0;
     z-index: 0;
     filter: brightness(0.8) contrast(1.1);
+    /* Mantener el scale(1.02) aquí está bien para evitar bordes si el video es exactamente 100% */
     transform: scale(1.02);
 }
 
@@ -146,6 +132,7 @@ main.content-wrapper {
     align-items: center;
     justify-content: center;
     padding: 20px;
+    max-width: 90%; /* Limitar ancho en pantallas pequeñas */
 }
 
 /* Logo Styling (se mantiene el logo de arriba) */
@@ -153,7 +140,7 @@ main.content-wrapper {
     width: 250px;
     height: auto;
     margin-bottom: 25px;
-    filter: drop-shadow(6px 6px 3px rgba(0, 0, 0, 0.8));
+    filter: drop-shadow(6px 6px 3px rgba(0,0,0,0.8));
     image-rendering: crisp-edges;
     animation: fadeInScale 1.2s ease-out forwards;
 }
@@ -163,7 +150,6 @@ main.content-wrapper {
         opacity: 0;
         transform: scale(0.7);
     }
-
     to {
         opacity: 1;
         transform: scale(1);
@@ -176,7 +162,8 @@ main.content-wrapper {
     max-width: 800px;
     height: auto;
     margin-bottom: 30px;
-    filter: drop-shadow(8px 8px 4px rgba(0, 0, 0, 0.9)) drop-shadow(-4px -4px 2px rgba(255, 255, 255, 0.2));
+    filter: drop-shadow(8px 8px 4px rgba(0,0,0,0.9))
+            drop-shadow(-4px -4px 2px rgba(255,255,255,0.2));
     image-rendering: crisp-edges;
     animation: fadeInSlideUp 1.5s ease-out forwards;
 }
@@ -186,7 +173,6 @@ main.content-wrapper {
         opacity: 0;
         transform: translateY(50px) scale(0.9);
     }
-
     to {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -215,7 +201,7 @@ main.content-wrapper {
     color: var(--mc-text-white);
     padding: 18px 35px;
     border: 5px solid var(--mc-dark-stone);
-    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.7);
+    box-shadow: 8px 8px 0px rgba(0,0,0,0.7);
     text-shadow: 3px 3px 0 var(--mc-darkest-stone);
     transition: all 0.1s linear;
     cursor: pointer;
@@ -224,7 +210,6 @@ main.content-wrapper {
     overflow: hidden;
     z-index: 1;
 }
-
 .main-cta-button i {
     font-size: 1.4em;
     color: var(--mc-gold-yellow);
@@ -250,24 +235,20 @@ main.content-wrapper {
 .main-cta-button:hover {
     background-color: var(--mc-light-stone);
     transform: translate(3px, 3px);
-    box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.7);
+    box-shadow: 5px 5px 0px rgba(0,0,0,0.7);
 }
-
 .main-cta-button:active {
     background-color: var(--mc-dark-stone);
     transform: translate(8px, 8px);
-    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.6);
+    box-shadow: 0px 0px 0px rgba(0,0,0,0.6);
 }
 
 .animated-border-btn::before {
     background: conic-gradient(from 0deg, transparent 0%, var(--mc-gold-yellow) 20%, transparent 40%, transparent 60%, var(--mc-gold-yellow) 80%, transparent 100%);
     animation: rotateBorder 3s linear infinite;
 }
-
 @keyframes rotateBorder {
-    to {
-        transform: rotate(360deg);
-    }
+    to { transform: rotate(360deg); }
 }
 
 
@@ -283,7 +264,7 @@ main.content-wrapper {
     left: 0;
     width: 100%;
     z-index: 1000;
-    box-shadow: 0 -8px 0px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 -8px 0px rgba(0,0,0,0.7);
 }
 
 .nav-links-grid {
@@ -293,6 +274,7 @@ main.content-wrapper {
     display: flex;
     justify-content: center;
     gap: 40px;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan a la siguiente línea */
 }
 
 .nav-slot-button {
@@ -302,15 +284,18 @@ main.content-wrapper {
     padding: 15px 25px;
     background-color: var(--mc-medium-stone);
     border: 4px solid var(--mc-dark-stone);
-    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.6);
+    box-shadow: 6px 6px 0px rgba(0,0,0,0.6);
     text-shadow: 2px 2px 0 var(--mc-darkest-stone);
     transition: all 0.1s linear;
     display: flex;
     align-items: center;
     gap: 12px;
     white-space: nowrap;
+    /* Ajuste para que los botones se hagan más pequeños en móviles */
+    flex-grow: 1; /* Permite que crezcan para llenar el espacio */
+    flex-basis: auto; /* Base automática */
+    min-width: 120px; /* Tamaño mínimo para que no se hagan demasiado pequeños */
 }
-
 .nav-slot-button i {
     color: var(--mc-emerald-green);
     font-size: 1.2em;
@@ -319,13 +304,12 @@ main.content-wrapper {
 .nav-slot-button:hover {
     background-color: var(--mc-light-stone);
     transform: translate(3px, 3px);
-    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.6);
+    box-shadow: 3px 3px 0px rgba(0,0,0,0.6);
 }
-
 .nav-slot-button:active {
     background-color: var(--mc-dark-stone);
     transform: translate(6px, 6px);
-    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.6);
+    box-shadow: 0px 0px 0px rgba(0,0,0,0.6);
 }
 
 /* Info Modules: Content Blocks */
@@ -336,35 +320,24 @@ main.content-wrapper {
     padding: 40px;
     margin-bottom: 40px;
     border: 5px solid var(--mc-darkest-stone);
-    box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.8);
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.8);
     text-align: center;
     transition: transform 0.2s linear, box-shadow 0.2s linear;
     position: relative;
 }
-
-.info-module::before,
-.info-module::after {
+.info-module::before, .info-module::after {
     content: '';
     position: absolute;
-    width: 12px;
-    height: 12px;
+    width: 12px; height: 12px;
     background-color: var(--mc-darkest-stone);
 }
-
-.info-module::before {
-    top: -5px;
-    left: -5px;
-}
-
-.info-module::after {
-    bottom: -5px;
-    right: -5px;
-}
+.info-module::before { top: -5px; left: -5px; }
+.info-module::after { bottom: -5px; right: -5px; }
 
 
 .info-module:hover {
     transform: translateY(-8px);
-    box-shadow: 12px 12px 0px rgba(0, 0, 0, 0.9);
+    box-shadow: 12px 12px 0px rgba(0,0,0,0.9);
 }
 
 .module-header {
@@ -380,7 +353,6 @@ main.content-wrapper {
     text-shadow: 3px 3px 0px var(--mc-darkest-stone);
     margin-bottom: 15px;
 }
-
 .module-title i {
     margin-right: 15px;
     color: var(--mc-emerald-green);
@@ -412,13 +384,12 @@ main.content-wrapper {
     color: var(--mc-text-white);
     padding: 15px 30px;
     border: 4px solid var(--mc-dark-stone);
-    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.6);
+    box-shadow: 6px 6px 0px rgba(0,0,0,0.6);
     text-shadow: 2px 2px 0 var(--mc-darkest-stone);
     transition: all 0.1s linear;
     cursor: pointer;
     font-size: 1.1em;
 }
-
 .action-button i {
     font-size: 1.2em;
     color: var(--mc-gold-yellow);
@@ -427,13 +398,12 @@ main.content-wrapper {
 .action-button:hover {
     background-color: var(--mc-light-stone);
     transform: translate(3px, 3px);
-    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.6);
+    box-shadow: 3px 3px 0px rgba(0,0,0,0.6);
 }
-
 .action-button:active {
     background-color: var(--mc-dark-stone);
     transform: translate(6px, 6px);
-    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.6);
+    box-shadow: 0px 0px 0px rgba(0,0,0,0.6);
 }
 
 .pixel-glow-btn::before {
@@ -451,7 +421,7 @@ main.content-wrapper {
     background-color: var(--mc-dark-stone);
     padding: 20px 30px;
     border: 4px solid var(--mc-darkest-stone);
-    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.7);
+    box-shadow: 6px 6px 0px rgba(0,0,0,0.7);
 }
 
 .ip-display-area code {
@@ -462,7 +432,7 @@ main.content-wrapper {
     text-shadow: 3px 3px 0px var(--mc-darkest-stone);
     padding: 8px 15px;
     border: 3px dotted var(--mc-gold-yellow);
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0,0,0,0.4);
 }
 
 /* Fundadores Showcase */
@@ -480,27 +450,26 @@ main.content-wrapper {
     background-repeat: repeat;
     padding: 25px;
     border: 4px solid var(--mc-darkest-stone);
-    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.7);
+    box-shadow: 8px 8px 0px rgba(0,0,0,0.7);
     text-align: center;
     transition: transform 0.2s linear, box-shadow 0.2s linear;
 }
 
 .founder-profile-card:hover {
     transform: translateY(-5px);
-    box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.8);
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.8);
 }
 
 .founder-avatar {
     width: 140px;
     height: 140px;
     border: 5px solid var(--mc-gold-yellow);
-    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.6);
+    box-shadow: 3px 3px 0px rgba(0,0,0,0.6);
     margin-bottom: 20px;
     image-rendering: pixelated;
     transform: scale(1);
     transition: transform 0.2s ease;
 }
-
 .founder-avatar:hover {
     transform: scale(1.08);
 }
@@ -531,14 +500,13 @@ main.content-wrapper {
     border-top: 6px solid var(--mc-darkest-stone);
     color: var(--mc-text-light-gray);
     font-size: 1em;
-    box-shadow: 0 -6px 0px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 -6px 0px rgba(0,0,0,0.6);
     text-shadow: 1px 1px 0 var(--mc-darkest-stone);
 }
 
 .footer-area .holyland-holy {
     color: var(--holyland-holy-blue);
 }
-
 .footer-area .holyland-land {
     color: var(--holyland-land-white);
 }
@@ -546,14 +514,12 @@ main.content-wrapper {
 .social-icons-tray {
     margin-top: 20px;
 }
-
 .social-icons-tray a {
     color: var(--mc-text-light-gray);
     font-size: 1.8em;
     margin: 0 12px;
     transition: color 0.2s ease, transform 0.2s ease;
 }
-
 .social-icons-tray a:hover {
     color: var(--mc-gold-yellow);
     transform: translateY(-5px);
@@ -564,24 +530,19 @@ main.content-wrapper {
     .main-logo {
         width: 200px;
     }
-
     .server-title-image {
         width: 70%;
     }
-
     .tagline {
         font-size: 1.6em;
     }
-
     .main-cta-button {
         padding: 15px 30px;
         font-size: 1.2em;
     }
-
     .nav-links-grid {
         gap: 30px;
     }
-
     .module-title {
         font-size: 2.5em;
     }
@@ -591,93 +552,91 @@ main.content-wrapper {
     .main-logo {
         width: 180px;
     }
-
     .server-title-image {
         width: 60%;
     }
-
     .tagline {
         font-size: 1.4em;
     }
-
     .main-cta-button {
         padding: 12px 25px;
         font-size: 1.1em;
     }
-
     .nav-links-grid {
-        flex-direction: column;
-        gap: 15px;
+        flex-direction: row; /* Mantener en fila, pero ahora con wrap */
+        flex-wrap: wrap; /* Permitir que los elementos se envuelvan */
+        gap: 10px; /* Reducir el espacio entre botones */
+        justify-content: center; /* Centrar los botones cuando se envuelven */
     }
-
     .nav-slot-button {
         padding: 12px;
-        font-size: 1.1em;
+        font-size: 1.0em; /* Hacer la fuente un poco más pequeña */
+        flex-basis: calc(50% - 15px); /* Dos columnas en pantallas pequeñas, restando el gap */
+        max-width: calc(50% - 15px); /* Limitar el ancho para asegurar dos columnas */
+        min-width: unset; /* Quitar el min-width global para permitir más flexibilidad */
     }
-
     .info-module {
         padding: 30px;
     }
-
     .module-title {
         font-size: 2.2em;
     }
-
     .ip-display-area code {
         font-size: 1.6em;
     }
 }
 
 @media (max-width: 480px) {
+    html {
+        font-size: 14px; /* Reducir la base de la fuente para pantallas muy pequeñas */
+    }
     .main-logo {
         width: 150px;
         margin-bottom: 20px;
     }
-
     .server-title-image {
         width: 90%;
         max-width: 350px;
     }
-
     .tagline {
         font-size: 1.1em;
         margin-bottom: 30px;
     }
-
-    .main-cta-button,
-    .action-button {
+    .main-cta-button, .action-button {
         padding: 10px 20px;
         font-size: 1em;
     }
-
     .module-title {
         font-size: 1.8em;
     }
-
     .ip-display-area code {
         font-size: 1.4em;
     }
-
     .founder-avatar {
         width: 120px;
         height: 120px;
     }
-
     .founder-name {
         font-size: 1.6em;
     }
-
     .social-icons-tray a {
         font-size: 1.5em;
         margin: 0 10px;
     }
-
     .nav-links-grid {
-        gap: 10px;
+        gap: 8px; /* Reducir aún más el espacio */
     }
-
     .nav-slot-button {
         padding: 10px;
-        font-size: 1em;
+        font-size: 0.9em; /* Fuente más pequeña */
+        flex-basis: calc(50% - 10px); /* Asegurar dos columnas, ajustar gap */
+        max-width: calc(50% - 10px);
     }
+    /* Si se quiere una columna en las pantallas más pequeñas (opcional) */
+    /* @media (max-width: 360px) {
+        .nav-slot-button {
+            flex-basis: 100%;
+            max-width: 100%;
+        }
+    } */
 }
