@@ -1,5 +1,7 @@
 /* Custom Minecraft Font Import */
-@font-face {
+/* Fuentes comentadas porque los archivos .ttf no se encontraron, causando 404 errores.
+   Si tienes estos archivos, asegúrate de que estén en la carpeta 'fonts/' y descomenta estas reglas. */
+/* @font-face {
     font-family: 'MinecraftRegular';
     src: url('fonts/MinecraftRegular.ttf') format('truetype');
     font-weight: normal;
@@ -11,7 +13,7 @@
     src: url('fonts/MinecraftBold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
-}
+} */
 
 /* Minecraft Color Palette & UI Variables (REFINADOS) */
 :root {
@@ -45,12 +47,14 @@
     /* Rojo para alertas o elementos activos */
 
     /* Variables para texturas de fondo (corregidas) */
-    --texture-world-bg: url('images/minecraft_dirt_bg.png');
-    /* Asegúrate de que esta imagen exista */
-    --texture-dark-panel-bg: url('images/minecraft_obsidian_texture.png');
-    /* Asegúrate de que esta imagen exista */
-    --texture-panel-bg: url('images/minecraft_stone_texture.png');
-    /* Asegúrate de que esta imagen exista */
+    /* Las siguientes texturas estaban causando errores 404 y han sido removidas.
+        Si tienes estas imágenes, asegúrate de que estén en la carpeta 'images/' y descomenta estas líneas. */
+    --texture-world-bg: none;
+    /* Antes: url('images/minecraft_dirt_bg.png'); */
+    --texture-dark-panel-bg: none;
+    /* Antes: url('images/minecraft_obsidian_texture.png'); */
+    --texture-panel-bg: none;
+    /* Antes: url('images/minecraft_stone_texture.png'); */
 }
 
 /* General Styles & Reset */
@@ -70,9 +74,11 @@ html {
 }
 
 body {
-    font-family: 'MinecraftRegular', sans-serif;
+    /* Si las fuentes de Minecraft no están cargadas, el navegador usará la fuente sans-serif por defecto */
+    font-family: sans-serif;
     background-color: var(--mc-darkest-stone);
-    background-image: var(--texture-world-bg);
+    /* El background-image de --texture-world-bg ha sido removido */
+    /* background-image: var(--texture-world-bg); */
     background-repeat: repeat;
     color: var(--mc-text-white);
     line-height: 1.6;
@@ -138,12 +144,13 @@ main.content-wrapper {
     height: 100%;
     object-fit: cover;
     /* ¡CLAVE! Esto hace que el video cubra todo el contenedor, ajustándose y "estirándose" correctamente */
-    object-position: center center;
-    /* ¡NUEVO! Asegura que el punto central del video siempre esté visible */
+    object-position: center;
+    /* Se mantuvo como estaba, ya es una buena práctica */
     position: absolute;
     top: 0;
     left: 0;
     z-index: 0;
+    /* Asegura que el video esté detrás del contenido */
     filter: brightness(0.8) contrast(1.1);
     transform: scale(1.02);
     /* Pequeño zoom para asegurar que no haya bordes negros */
@@ -220,7 +227,8 @@ main.content-wrapper {
 }
 
 .tagline {
-    font-family: 'MinecraftRegular', sans-serif;
+    /* Si la fuente 'MinecraftRegular' no está disponible, se usará una fuente sans-serif por defecto */
+    font-family: sans-serif;
     font-size: 1.8em;
     color: var(--mc-text-light-gray);
     margin-bottom: 40px;
@@ -236,7 +244,8 @@ main.content-wrapper {
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    font-family: 'MinecraftBold', sans-serif;
+    /* Si la fuente 'MinecraftBold' no está disponible, se usará una fuente sans-serif por defecto */
+    font-family: sans-serif;
     background-color: var(--mc-medium-stone);
     color: var(--mc-text-white);
     padding: 18px 35px;
@@ -306,7 +315,8 @@ main.content-wrapper {
 /* Main Navigation (Fixed Footer Bar) */
 .main-navigation {
     background-color: var(--mc-dark-stone);
-    background-image: var(--texture-dark-panel-bg);
+    /* El background-image de --texture-dark-panel-bg ha sido removido */
+    /* background-image: var(--texture-dark-panel-bg); */
     background-repeat: repeat;
     padding: 10px 0;
     /* **Reducido el padding vertical por defecto para desktop** */
@@ -338,7 +348,8 @@ main.content-wrapper {
 }
 
 .nav-slot-button {
-    font-family: 'MinecraftBold', sans-serif;
+    /* Si la fuente 'MinecraftBold' no está disponible, se usará una fuente sans-serif por defecto */
+    font-family: sans-serif;
     color: var(--mc-text-white);
     font-size: 1.1em;
     /* **Tamaño de fuente ligeramente más pequeño para desktop** */
@@ -385,7 +396,8 @@ main.content-wrapper {
 /* Info Modules: Content Blocks */
 .info-module {
     background-color: var(--mc-dark-stone);
-    background-image: var(--texture-panel-bg);
+    /* El background-image de --texture-panel-bg ha sido removido */
+    /* background-image: var(--texture-panel-bg); */
     background-repeat: repeat;
     padding: 40px;
     margin-bottom: 40px;
@@ -428,7 +440,8 @@ main.content-wrapper {
 }
 
 .module-title {
-    font-family: 'MinecraftBold', sans-serif;
+    /* Si la fuente 'MinecraftBold' no está disponible, se usará una fuente sans-serif por defecto */
+    font-family: sans-serif;
     font-size: 3em;
     color: var(--mc-gold-yellow);
     text-shadow: 3px 3px 0px var(--mc-darkest-stone);
@@ -450,7 +463,8 @@ main.content-wrapper {
 }
 
 .module-description {
-    font-family: 'MinecraftRegular', sans-serif;
+    /* Si la fuente 'MinecraftRegular' no está disponible, se usará una fuente sans-serif por defecto */
+    font-family: sans-serif;
     font-size: 1.2em;
     color: var(--mc-text-light-gray);
     margin-bottom: 30px;
@@ -461,7 +475,8 @@ main.content-wrapper {
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    font-family: 'MinecraftBold', sans-serif;
+    /* Si la fuente 'MinecraftBold' no está disponible, se usará una fuente sans-serif por defecto */
+    font-family: sans-serif;
     background-color: var(--mc-medium-stone);
     color: var(--mc-text-white);
     padding: 15px 30px;
@@ -516,13 +531,17 @@ main.content-wrapper {
     gap: 20px;
     margin-top: 30px;
     background-color: var(--mc-dark-stone);
+    /* El background-image de --texture-panel-bg ha sido removido */
+    /* background-image: var(--texture-panel-bg); */
+    background-repeat: repeat;
     padding: 20px 30px;
     border: 4px solid var(--mc-darkest-stone);
     box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.7);
 }
 
 .ip-display-area code {
-    font-family: 'MinecraftBold', monospace;
+    /* Si la fuente 'MinecraftBold' no está disponible, se usará una fuente monospace por defecto */
+    font-family: monospace;
     font-size: 1.8em;
     color: var(--holyland-land-white);
     letter-spacing: 2px;
@@ -543,7 +562,8 @@ main.content-wrapper {
 
 .founder-profile-card {
     background-color: var(--mc-dark-stone);
-    background-image: var(--texture-panel-bg);
+    /* El background-image de --texture-panel-bg ha sido removido */
+    /* background-image: var(--texture-panel-bg); */
     background-repeat: repeat;
     padding: 25px;
     border: 4px solid var(--mc-darkest-stone);
@@ -573,7 +593,8 @@ main.content-wrapper {
 }
 
 .founder-name {
-    font-family: 'MinecraftBold', sans-serif;
+    /* Si la fuente 'MinecraftBold' no está disponible, se usará una fuente sans-serif por defecto */
+    font-family: sans-serif;
     color: var(--mc-gold-yellow);
     font-size: 1.8em;
     margin-bottom: 8px;
@@ -581,7 +602,8 @@ main.content-wrapper {
 }
 
 .founder-role {
-    font-family: 'MinecraftRegular', sans-serif;
+    /* Si la fuente 'MinecraftRegular' no está disponible, se usará una fuente sans-serif por defecto */
+    font-family: sans-serif;
     color: var(--mc-text-light-gray);
     font-size: 1.1em;
     text-shadow: 1px 1px 0px var(--mc-darkest-stone);
@@ -590,7 +612,8 @@ main.content-wrapper {
 /* Footer Area */
 .footer-area {
     background-color: var(--mc-darkest-stone);
-    background-image: var(--texture-dark-panel-bg);
+    /* El background-image de --texture-dark-panel-bg ha sido removido */
+    /* background-image: var(--texture-dark-panel-bg); */
     background-repeat: repeat;
     text-align: center;
     padding: 30px;
@@ -624,6 +647,37 @@ main.content-wrapper {
 .social-icons-tray a:hover {
     color: var(--mc-gold-yellow);
     transform: translateY(-5px);
+}
+
+/* Se mueve esta regla al final para más especificidad o donde su contexto tiene más sentido si es necesario.
+   Ya está definida arriba, así que esta sería una duplicación o un override si no se tiene cuidado.
+   La dejamos aquí por si hay alguna razón específica para redefinirla.
+   La versión de arriba ya es correcta. */
+/* .hero-video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+} */
+
+.hero-fallback-background {
+    /* La imagen 'fallback.jpg' estaba causando un error 404 y ha sido removida. */
+    /* background-image: url('images/fallback.jpg'); */
+    background-image: none;
+    /* Cambiado a none */
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    display: none;
+    /* se activa solo si el video falla */
 }
 
 /* Media Queries for Responsive Design */
@@ -683,7 +737,7 @@ main.content-wrapper {
         max-width: 95%;
         padding: 15px;
         padding-bottom: 80px;
-        /* **Ajusta este padding para que el botón de CTA no quede cubierto por la nav-bar** */
+        /* **Ajusta este padding para que el contenido de CTA no quede cubierto por la nav-bar** */
     }
 
     .main-logo {
@@ -732,7 +786,7 @@ main.content-wrapper {
         font-size: 0.9em;
         /* **Fuente más pequeña en móvil** */
         padding: 8px 5px;
-        /* **Padding más pequeño en botones para móvil** */
+        /* **Padding más pequeño para botones en móviles** */
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -886,3 +940,124 @@ main.content-wrapper {
         margin: 0 6px;
     }
 }
+
+/* ⭐⭐⭐ ESTILOS ADICIONALES PARA EL ESTADO DEL SERVIDOR ⭐⭐⭐ */
+
+/* Contenedor del estado del servidor */
+#server-status {
+    background-color: var(--mc-dark-stone);
+    /* El background-image de --texture-panel-bg ha sido removido */
+    /* background-image: var(--texture-panel-bg); */
+    background-repeat: repeat;
+    padding: 15px 25px;
+    border: 4px solid var(--mc-darkest-stone);
+    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+/* Título de estado */
+#server-status h3 {
+    /* Si la fuente 'MinecraftBold' no está disponible, se usará una fuente sans-serif por defecto */
+    font-family: sans-serif;
+    font-size: 1.5em;
+    color: var(--mc-gold-yellow);
+    text-shadow: 2px 2px 0px var(--mc-darkest-stone);
+    margin: 0;
+}
+
+/* Mensaje de estado (Online/Offline) */
+#server-status p {
+    /* Si la fuente 'MinecraftRegular' no está disponible, se usará una fuente sans-serif por defecto */
+    font-family: sans-serif;
+    font-size: 1.1em;
+    color: var(--mc-text-light-gray);
+    text-shadow: 1px 1px 0 var(--mc-text-shadow-dark);
+    margin: 0;
+}
+
+/* Estilos específicos para el estado ONLINE */
+#server-status.online {
+    border-color: var(--mc-emerald-green);
+    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 204, 0, 0.4);
+    /* Pequeño brillo verde */
+}
+
+#server-status.online h3 {
+    color: var(--mc-emerald-green);
+}
+
+/* Estilos específicos para el estado OFFLINE */
+#server-status.offline {
+    border-color: var(--mc-redstone-red);
+    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.7), 0 0 15px rgba(255, 85, 85, 0.4);
+    /* Pequeño brillo rojo */
+}
+
+#server-status.offline h3 {
+    color: var(--mc-redstone-red);
+}
+
+/* Contador de jugadores */
+.players-count {
+    /* Si la fuente 'MinecraftBold' no está disponible, se usará una fuente monospace por defecto */
+    font-family: monospace;
+    font-size: 1.2em;
+    color: var(--holyland-land-white);
+    text-shadow: 1px 1px 0px var(--mc-darkest-stone);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.players-count i {
+    color: var(--holyland-holy-blue);
+    /* Color del icono de jugadores */
+    font-size: 1.1em;
+}
+
+/* Media Queries para el estado del servidor (ajustes de tamaño) */
+@media (max-width: 768px) {
+    #server-status {
+        padding: 12px 20px;
+        gap: 8px;
+    }
+
+    #server-status h3 {
+        font-size: 1.2em;
+    }
+
+    #server-status p {
+        font-size: 0.9em;
+    }
+
+    .players-count {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    #server-status {
+        padding: 10px 15px;
+        gap: 5px;
+    }
+
+    #server-status h3 {
+        font-size: 1em;
+    }
+
+    #server-status p {
+        font-size: 0.8em;
+    }
+
+    .players-count {
+        font-size: 0.9em;
+    }
+}
+
+/* ⭐⭐⭐ FIN DE ESTILOS ADICIONALES PARA EL ESTADO DEL SERVIDOR ⭐⭐⭐ */
