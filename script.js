@@ -3,6 +3,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (heroVideo) {
         heroVideo.play().catch(error => {
             console.log('Autoplay blocked. User might need to interact.', error);
+            // Fallback for when autoplay is blocked
+            const heroSection = document.querySelector('.hero-section');
+            if (heroSection) {
+                const fallbackDiv = document.createElement('div');
+                fallbackDiv.classList.add('hero-fallback-background');
+                heroSection.prepend(fallbackDiv);
+                heroVideo.style.display = 'none'; // Hide the video
+                fallbackDiv.style.display = 'block'; // Show fallback image
+            }
         });
     }
 
@@ -47,40 +56,91 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ⭐⭐⭐ ESTADO DEL SERVIDOR MINECRAFT ⭐⭐⭐
+    const fetchServerStatus = () => {
+        const serverStatusContainer = document.getElementById('server-status'); // Usar el ID del contenedor
+        const serverIP = 'play.holylandmc.com'; // Asegúrate de que esta sea la IP correcta de tu servidor
+
+        if (!serverStatusContainer) {
+            console.warn("Elemento #server-status no encontrado. El estado del servidor no se mostrará.");
+            return;
+        }
+
+        fetch(`https://api.mcstatus.io/v2/status/java/${serverIP}`)
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+                return res.json();
+            })
+            .then(data => {
+                serverStatusContainer.innerHTML = ''; // Limpiar contenido anterior
+                serverStatusContainer.classList.remove('online', 'offline'); // Limpiar clases
+
+                const titleElement = document.createElement('h3');
+                const playersElement = document.createElement('p');
+                const versionElement = document.createElement('p');
+
+                if (data.online) {
+                    serverStatusContainer.classList.add('online');
+                    titleElement.textContent = 'Estado del Servidor: EN LÍNEA';
+                    playersElement.classList.add('players-count');
+                    playersElement.innerHTML = `<i class="fas fa-users"></i> ${data.players.online} / ${data.players.max} Jugadores`;
+                    versionElement.textContent = `Versión: ${data.version.name_clean}`;
+                    versionElement.style.marginTop = '5px'; // Espacio entre jugadores y versión
+                } else {
+                    serverStatusContainer.classList.add('offline');
+                    titleElement.textContent = 'Estado del Servidor: FUERA DE LÍNEA';
+                    playersElement.textContent = 'El servidor no está disponible en este momento.';
+                }
+
+                serverStatusContainer.appendChild(titleElement);
+                serverStatusContainer.appendChild(playersElement);
+                if (data.online) { // Mostrar versión solo si está online
+                    serverStatusContainer.appendChild(versionElement);
+                }
+            })
+            .catch(err => {
+                console.error('Error al obtener el estado del servidor:', err);
+                const serverStatusContainer = document.getElementById('server-status');
+                if (serverStatusContainer) {
+                    serverStatusContainer.classList.remove('online', 'offline');
+                    serverStatusContainer.classList.add('offline'); // Opcional: mostrar como offline en caso de error
+                    serverStatusContainer.innerHTML = `<h3>Estado del Servidor: ERROR</h3><p>No se pudo conectar con la API.</p>`;
+                }
+            });
+    };
+
+    // Llama a la función al cargar la página y luego cada cierto tiempo
+    fetchServerStatus();
+    setInterval(fetchServerStatus, 60000); // Actualiza cada 60 segundos (1 minuto)
+
+    // ⭐⭐⭐ FIN ESTADO DEL SERVIDOR MINECRAFT ⭐⭐⭐
+
     // Lógica de desplazamiento suave para los enlaces de navegación
     document.querySelectorAll('.main-navigation a').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault(); // Previene el comportamiento por defecto del enlace
-
-            const targetId = this.getAttribute('href'); // Obtiene el ID de la sección (#discord, #ip, etc.)
-            const targetElement = document.querySelector(targetId); // Selecciona el elemento objetivo
-
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
             if (targetElement) {
-                // Obtener la altura de la barra de navegación para ajustarla
                 const navHeight = document.querySelector('.main-navigation').offsetHeight;
-
-                // Calcular la posición de desplazamiento ajustada
-                // Restamos la altura de la barra de navegación para que el contenido no quede cubierto
                 const offsetTop = targetElement.offsetTop - navHeight;
 
                 window.scrollTo({
-                    top: offsetTop, // Se desplaza a la posición ajustada
-                    behavior: 'smooth' // Habilita el desplazamiento suave
+                    top: offsetTop,
+                    behavior: 'smooth'
                 });
-
-                // Ya no necesitamos hacer visible el main.content-wrapper aquí, ya lo es por CSS
-                // document.querySelector('main.content-wrapper').style.opacity = '1';
-                // document.querySelector('main.content-wrapper').style.transform = 'translateY(0)';
             }
         });
     });
 
-    // Lógica para mostrar las secciones al hacer scroll (Intersection Observer)
+    // Lógica para mostrar las secciones al hacer scroll
     const infoModules = document.querySelectorAll('.info-module');
     const observerOptions = {
         root: null,
         rootMargin: '0px',
-        threshold: 0.1 // El módulo se activará cuando el 10% de él sea visible
+        threshold: 0.1
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
@@ -88,26 +148,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
                 entry.target.style.transform = 'translateY(0)';
-                observer.unobserve(entry.target); // Deja de observar una vez que se ha hecho visible
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
     infoModules.forEach(module => {
+        // Asegúrate de que los módulos tengan la clase 'hidden-initially' para que la animación funcione
+        module.classList.add('hidden-initially');
         observer.observe(module);
     });
-
-    // ELIMINADO: La lógica del scrollTimeout para el main.content-wrapper ya no es necesaria
-    /*
-    let scrollTimeout;
-    window.addEventListener('scroll', () => {
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(() => {
-            if (window.scrollY > 50) {
-                document.querySelector('main.content-wrapper').style.opacity = '1';
-                document.querySelector('main.content-wrapper').style.transform = 'translateY(0)';
-            }
-        }, 100);
-    });
-    */
 });
