@@ -1,6 +1,4 @@
-/* Custom Minecraft Font Import */
-/* Fuentes comentadas porque los archivos .ttf no se encontraron, causando 404 errores.
-   Si tienes estos archivos, asegúrate de que estén en la carpeta 'fonts/' y descomenta estas reglas. */
+
 /* @font-face {
     font-family: 'MinecraftRegular';
     src: url('fonts/MinecraftRegular.ttf') format('truetype');
