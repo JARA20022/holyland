@@ -1,161 +1,74 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // 1. Manejo del video de fondo y fallback
     const heroVideo = document.querySelector('.hero-video-background');
+
     if (heroVideo) {
         heroVideo.play().catch(error => {
-            console.log('Autoplay blocked. User might need to interact.', error);
-            // Fallback for when autoplay is blocked
-            const heroSection = document.querySelector('.hero-section');
-            if (heroSection) {
-                const fallbackDiv = document.createElement('div');
-                fallbackDiv.classList.add('hero-fallback-background');
-                heroSection.prepend(fallbackDiv);
-                heroVideo.style.display = 'none'; // Hide the video
-                fallbackDiv.style.display = 'block'; // Show fallback image
-            }
+            console.warn('Autoplay del video bloqueado. Posiblemente se necesite interacción del usuario.', error);
+            // El atributo 'poster' en el HTML ya maneja la imagen de fallback si el video no se reproduce.
         });
     }
 
-    const copyBtn = document.querySelector('.copy-ip-btn');
-    const serverIpCode = document.getElementById('serverIp');
+    // 2. Funcionalidad de copiar IP
+    const copyIpBtn = document.querySelector('.copy-ip-btn');
+    const ipAddressText = document.querySelector('.ip-address-text'); // Clase para el texto de la IP
 
-    if (copyBtn && serverIpCode) {
-        copyBtn.addEventListener('click', () => {
-            const ipAddress = serverIpCode.textContent;
+    if (copyIpBtn && ipAddressText) {
+        copyIpBtn.addEventListener('click', () => {
+            const ipAddress = ipAddressText.textContent; // Obtener texto de la clase
             navigator.clipboard.writeText(ipAddress)
                 .then(() => {
-                    const originalButtonHtml = copyBtn.innerHTML;
-                    const originalIpText = serverIpCode.textContent;
+                    const originalButtonHtml = copyIpBtn.innerHTML;
+                    const originalIpText = ipAddressText.textContent;
 
-                    copyBtn.innerHTML = '<span class="button-text">¡COPIADO!</span> <i class="fas fa-check"></i>';
-                    copyBtn.style.transform = 'translate(4px, 4px)';
-                    copyBtn.style.boxShadow = '0px 0px 0px rgba(0,0,0,0.6)';
+                    // Cambiar el texto del botón y la IP para indicar que se copió
+                    copyIpBtn.innerHTML = '<i class="fas fa-check"></i> ¡COPIADO!';
+                    ipAddressText.textContent = '¡PEGADO!'; // Mensaje temporal en la IP
+                    ipAddressText.style.color = 'var(--mc-emerald-green)'; // Verde de éxito
 
-                    serverIpCode.textContent = '';
-                    let i = 0;
-                    const copiedText = 'Copiado!';
-                    const typeInterval = setInterval(() => {
-                        if (i < copiedText.length) {
-                            serverIpCode.textContent += copiedText.charAt(i);
-                            i++;
-                        } else {
-                            clearInterval(typeInterval);
-                        }
-                    }, 50);
-
+                    // Restaurar el texto y color originales después de un breve retraso
                     setTimeout(() => {
-                        copyBtn.innerHTML = originalButtonHtml;
-                        serverIpCode.textContent = originalIpText;
-                        copyBtn.style.transform = '';
-                        copyBtn.style.boxShadow = '';
-                    }, 2000);
+                        copyIpBtn.innerHTML = originalButtonHtml;
+                        ipAddressText.textContent = originalIpText;
+                        ipAddressText.style.color = 'var(--mc-text-white)'; // Vuelve al color original
+                    }, 1500); // 1.5 segundos
                 })
                 .catch(err => {
-                    console.error('Error copying text: ', err);
-                    alert('Could not copy IP. Please copy manually: ' + ipAddress);
+                    console.error('Error al copiar el texto: ', err);
+                    alert('Error al copiar la IP. Por favor, cópiala manualmente: ' + ipAddress);
                 });
         });
     }
 
-    // ⭐⭐⭐ ESTADO DEL SERVIDOR MINECRAFT ⭐⭐⭐
-    const fetchServerStatus = () => {
-        const serverStatusContainer = document.getElementById('server-status'); // Usar el ID del contenedor
-        const serverIP = 'play.holylandmc.com'; // Asegúrate de que esta sea la IP correcta de tu servidor
+    // 3. Funcionalidad de estado del servidor (Ahora solo para contador de jugadores)
+    const serverPlayersCount = document.getElementById('server-players-count'); // Elemento para el contador de jugadores
 
-        if (!serverStatusContainer) {
-            console.warn("Elemento #server-status no encontrado. El estado del servidor no se mostrará.");
-            return;
+    const MINECRAFT_SERVER_IP = 'play.holylandmc.com'; // **¡AJUSTA ESTO A LA IP REAL DE TU SERVIDOR!**
+    const API_URL = `https://api.mcsrvstat.us/2/${MINECRAFT_SERVER_IP}`; // Ejemplo de API pública
+
+    async function fetchServerStatus() {
+        if (!serverPlayersCount) return;
+
+        try {
+            const response = await fetch(API_URL);
+            const data = await response.json();
+
+            if (data.online) {
+                serverPlayersCount.textContent = `${data.players.online}/${data.players.max}`;
+                serverPlayersCount.closest('.players-count').style.display = 'flex';
+            } else {
+                serverPlayersCount.textContent = '0/0';
+                serverPlayersCount.closest('.players-count').style.display = 'flex';
+            }
+        } catch (error) {
+            console.error('Error al obtener el estado del servidor:', error);
+            if (serverPlayersCount) {
+                serverPlayersCount.textContent = 'Error/Error';
+                serverPlayersCount.closest('.players-count').style.display = 'flex';
+            }
         }
+    }
 
-        fetch(`https://api.mcstatus.io/v2/status/java/${serverIP}`)
-            .then(res => {
-                if (!res.ok) {
-                    throw new Error(`HTTP error! status: ${res.status}`);
-                }
-                return res.json();
-            })
-            .then(data => {
-                serverStatusContainer.innerHTML = ''; // Limpiar contenido anterior
-                serverStatusContainer.classList.remove('online', 'offline'); // Limpiar clases
-
-                const titleElement = document.createElement('h3');
-                const playersElement = document.createElement('p');
-                const versionElement = document.createElement('p');
-
-                if (data.online) {
-                    serverStatusContainer.classList.add('online');
-                    titleElement.textContent = 'Estado del Servidor: EN LÍNEA';
-                    playersElement.classList.add('players-count');
-                    playersElement.innerHTML = `<i class="fas fa-users"></i> ${data.players.online} / ${data.players.max} Jugadores`;
-                    versionElement.textContent = `Versión: ${data.version.name_clean}`;
-                    versionElement.style.marginTop = '5px'; // Espacio entre jugadores y versión
-                } else {
-                    serverStatusContainer.classList.add('offline');
-                    titleElement.textContent = 'Estado del Servidor: FUERA DE LÍNEA';
-                    playersElement.textContent = 'El servidor no está disponible en este momento.';
-                }
-
-                serverStatusContainer.appendChild(titleElement);
-                serverStatusContainer.appendChild(playersElement);
-                if (data.online) { // Mostrar versión solo si está online
-                    serverStatusContainer.appendChild(versionElement);
-                }
-            })
-            .catch(err => {
-                console.error('Error al obtener el estado del servidor:', err);
-                const serverStatusContainer = document.getElementById('server-status');
-                if (serverStatusContainer) {
-                    serverStatusContainer.classList.remove('online', 'offline');
-                    serverStatusContainer.classList.add('offline'); // Opcional: mostrar como offline en caso de error
-                    serverStatusContainer.innerHTML = `<h3>Estado del Servidor: ERROR</h3><p>No se pudo conectar con la API.</p>`;
-                }
-            });
-    };
-
-    // Llama a la función al cargar la página y luego cada cierto tiempo
     fetchServerStatus();
-    setInterval(fetchServerStatus, 60000); // Actualiza cada 60 segundos (1 minuto)
-
-    // ⭐⭐⭐ FIN ESTADO DEL SERVIDOR MINECRAFT ⭐⭐⭐
-
-    // Lógica de desplazamiento suave para los enlaces de navegación
-    document.querySelectorAll('.main-navigation a').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                const navHeight = document.querySelector('.main-navigation').offsetHeight;
-                const offsetTop = targetElement.offsetTop - navHeight;
-
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-
-    // Lógica para mostrar las secciones al hacer scroll
-    const infoModules = document.querySelectorAll('.info-module');
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    infoModules.forEach(module => {
-        // Asegúrate de que los módulos tengan la clase 'hidden-initially' para que la animación funcione
-        module.classList.add('hidden-initially');
-        observer.observe(module);
-    });
+    setInterval(fetchServerStatus, 60000); // Actualiza cada minuto
 });
