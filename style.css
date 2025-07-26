@@ -69,7 +69,6 @@
 html,
 body {
     font-size: 100%;
-    /* Equivalente a 16px por defecto del navegador */
     box-sizing: border-box;
     font-family: sans-serif;
     background-color: var(--mc-darkest-stone);
@@ -140,7 +139,6 @@ a:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* Estilo general. Se ajustará para la página de normas. */
     justify-content: center;
     gap: 30px;
     /* Espaciado entre elementos en la página principal */
@@ -152,7 +150,10 @@ a:hover {
 
 /* Logo Styling */
 .main-logo {
-    width: 250px;
+    width: 70%;
+    /* Permite que el logo se encoja */
+    max-width: 250px;
+    /* Tamaño máximo para el logo */
     height: auto;
     margin-bottom: 25px;
     /* Margen para la página principal */
@@ -177,6 +178,7 @@ a:hover {
 .server-title-image {
     width: 80%;
     max-width: 800px;
+    /* Tamaño máximo para el título */
     height: auto;
     margin-bottom: 30px;
     /* Margen para la página principal */
@@ -199,7 +201,8 @@ a:hover {
 
 .tagline {
     font-family: sans-serif;
-    font-size: 1.8em;
+    font-size: 1.6em;
+    /* Tamaño de fuente ligeramente reducido por defecto */
     color: var(--mc-text-light-gray);
     margin-bottom: 40px;
     text-shadow: 3px 3px 0 var(--mc-text-shadow-dark);
@@ -243,7 +246,7 @@ a:hover {
 .nav-img-btn:active {
     background-color: var(--mc-dark-stone);
     transform: translate(6px, 6px);
-    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.6);
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.7);
 }
 
 .nav-img-btn .nav-img {
@@ -320,7 +323,6 @@ a:hover {
     text-shadow: 2px 2px 0 var(--mc-darkest-stone);
     letter-spacing: 0.5px;
     user-select: all;
-    /* Permite seleccionar el texto de la IP */
     cursor: text;
 }
 
@@ -365,7 +367,6 @@ a:hover {
     padding: 20px 30px;
     text-align: center;
     margin: 40px auto;
-    /* Margen auto para centrar horizontalmente */
     max-width: 500px;
     width: 90%;
     transition: all 0.3s ease;
@@ -389,7 +390,6 @@ a:hover {
 #server-status.online {
     border-color: var(--mc-emerald-green);
     box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 204, 0, 0.4);
-    /* Pequeño brillo verde */
 }
 
 #server-status.online h3 {
@@ -400,7 +400,6 @@ a:hover {
 #server-status.offline {
     border-color: var(--mc-redstone-red);
     box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.7), 0 0 15px rgba(255, 85, 85, 0.4);
-    /* Pequeño brillo rojo */
 }
 
 #server-status.offline h3 {
@@ -420,7 +419,6 @@ a:hover {
 
 .players-count i {
     color: var(--holyland-holy-blue);
-    /* Color del icono de jugadores */
     font-size: 1.1em;
 }
 
@@ -486,7 +484,6 @@ a:hover {
     /* Importante para que el libro no se salga si es demasiado grande */
 }
 
-
 .book-display-area {
     position: relative;
     width: 100%;
@@ -540,12 +537,74 @@ a:hover {
         min-height: auto;
     }
 
+    .hero-main-content {
+        padding: 15px;
+        height: 100%;
+        justify-content: center;
+        gap: 20px;
+        /* Gap reducido */
+    }
+
+    /* AJUSTES PARA index.html EN TABLETS */
+    .main-logo {
+        width: 60%;
+        max-width: 200px;
+        margin-bottom: 15px;
+    }
+
+    .server-title-image {
+        width: 75%;
+        max-width: 550px;
+        margin-bottom: 20px;
+    }
+
+    .tagline {
+        font-size: 1.3em;
+        margin-bottom: 30px;
+    }
+
+    .main-links-tray {
+        gap: 15px;
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+
+    .nav-img-btn {
+        min-width: 90px;
+        max-width: 130px;
+        padding: 10px 6px;
+    }
+
+    .nav-img-btn .nav-img {
+        width: 45px;
+    }
+
+    .nav-img-btn span {
+        font-size: 0.9em;
+    }
+
+    .ip-players-area {
+        padding: 10px 20px;
+        gap: 15px;
+        max-width: 500px;
+        margin-bottom: 20px;
+    }
+
+    .ip-address-text {
+        font-size: 1.1em;
+    }
+
+    .copy-ip-btn {
+        font-size: 0.9em;
+        padding: 6px 12px;
+    }
+
+    /* Ajustes específicos para la página de normas en 768px */
     .hero-section-normas {
         height: 100vh;
         min-height: auto;
     }
 
-    /* Ajustes específicos para la página de normas en 768px */
     .hero-section-normas .hero-main-content {
         justify-content: flex-start;
         padding-top: 3vh;
@@ -569,7 +628,6 @@ a:hover {
 
     .rules-final-image {
         max-width: 550px;
-        /* Ajustar el tamaño máximo para tablets */
         width: 90%;
     }
 
@@ -582,6 +640,77 @@ a:hover {
     .info-module {
         padding: 20px;
         margin: 20px auto;
+    }
+
+    .hero-main-content {
+        gap: 15px;
+        /* Gap aún más reducido */
+        padding: 10px;
+    }
+
+    /* AJUSTES PARA index.html EN MÓVILES */
+    .main-logo {
+        width: 50%;
+        max-width: 150px;
+        margin-bottom: 10px;
+    }
+
+    .server-title-image {
+        width: 70%;
+        max-width: 350px;
+        margin-bottom: 15px;
+    }
+
+    .tagline {
+        font-size: 1.0em;
+        margin-bottom: 20px;
+    }
+
+    .main-links-tray {
+        gap: 10px;
+        margin-top: 20px;
+        margin-bottom: 15px;
+    }
+
+    .nav-img-btn {
+        min-width: 70px;
+        max-width: 100px;
+        padding: 8px 4px;
+    }
+
+    .nav-img-btn .nav-img {
+        width: 40px;
+        margin-bottom: 4px;
+    }
+
+    .nav-img-btn span {
+        font-size: 0.8em;
+    }
+
+    .ip-players-area {
+        flex-direction: column;
+        /* Apilar elementos verticalmente en móviles */
+        align-items: center;
+        padding: 8px 15px;
+        gap: 10px;
+        max-width: 90%;
+        margin-bottom: 15px;
+    }
+
+    .players-count,
+    .ip-display-area {
+        width: 100%;
+        justify-content: center;
+        padding: 6px 10px;
+    }
+
+    .ip-address-text {
+        font-size: 1.0em;
+    }
+
+    .copy-ip-btn {
+        font-size: 0.8em;
+        padding: 5px 10px;
     }
 
     /* Ajustes específicos para la página de normas en 480px */
@@ -608,9 +737,7 @@ a:hover {
 
     .rules-final-image {
         max-width: 350px;
-        /* Ajustar el tamaño máximo para móviles */
         width: 95%;
-        /* Permitir que sea un poco más grande en móviles para visibilidad */
     }
 
     .book-disclaimer {
