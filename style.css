@@ -140,9 +140,8 @@ a:hover {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 30px;
-    /* Espaciado entre elementos en la página principal */
-    padding: 20px;
+    gap: 20px; /* Espaciado general reducido */
+    padding: 15px; /* Padding general reducido */
     max-width: 95%;
     width: 100%;
     height: 100%;
@@ -150,15 +149,12 @@ a:hover {
 
 /* Logo Styling */
 .main-logo {
-    width: 70%;
-    /* Permite que el logo se encoja */
-    max-width: 250px;
-    /* Tamaño máximo para el logo */
+    width: 60%; /* Permite que el logo se encoja más */
+    max-width: 200px; /* Tamaño máximo más pequeño para el logo */
     height: auto;
-    margin-bottom: 25px;
-    /* Margen para la página principal */
-    filter: drop-shadow(6px 6px 3px rgba(0, 0, 0, 0.8));
-    image-rendering: crisp-edges;
+    margin-bottom: 15px; /* Margen reducido */
+    filter: drop_shadow(6px 6px 3px rgba(0, 0, 0, 0.8));
+    image_rendering: crisp-edges;
     animation: fadeInScale 1.2s ease-out forwards;
 }
 
@@ -176,14 +172,12 @@ a:hover {
 
 /* ESTILOS PARA LA IMAGEN DEL TÍTULO (holyland.png) */
 .server-title-image {
-    width: 80%;
-    max-width: 800px;
-    /* Tamaño máximo para el título */
+    width: 75%; /* Permite que el título se encoja más */
+    max-width: 600px; /* Tamaño máximo más pequeño para el título */
     height: auto;
-    margin-bottom: 30px;
-    /* Margen para la página principal */
-    filter: drop-shadow(8px 8px 4px rgba(0, 0, 0, 0.9)) drop-shadow(-4px -4px 2px rgba(255, 255, 255, 0.2));
-    image-rendering: crisp-edges;
+    margin-bottom: 20px; /* Margen reducido */
+    filter: drop_shadow(8px 8px 4px rgba(0, 0, 0, 0.9)) drop_shadow(-4px -4px 2px rgba(255, 255, 255, 0.2));
+    image_rendering: crisp-edges;
     animation: fadeInSlideUp 1.5s ease-out forwards;
 }
 
@@ -201,10 +195,9 @@ a:hover {
 
 .tagline {
     font-family: sans-serif;
-    font-size: 1.6em;
-    /* Tamaño de fuente ligeramente reducido por defecto */
+    font-size: 1.4em; /* Tamaño de fuente más pequeño */
     color: var(--mc-text-light-gray);
-    margin-bottom: 40px;
+    margin-bottom: 25px; /* Margen reducido */
     text-shadow: 3px 3px 0 var(--mc-text-shadow-dark);
     letter-spacing: 1px;
 }
@@ -214,9 +207,9 @@ a:hover {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 30px;
-    margin-top: 60px;
-    margin-bottom: 40px;
+    gap: 20px; /* Gap reducido */
+    margin-top: 40px; /* Margen reducido */
+    margin-bottom: 25px; /* Margen reducido */
     max-width: 700px;
     width: 90%;
 }
@@ -253,8 +246,8 @@ a:hover {
     width: 60px;
     height: auto;
     margin-bottom: 8px;
-    image-rendering: pixelated;
-    filter: drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.5));
+    image_rendering: pixelated;
+    filter: drop_shadow(2px 2px 0px rgba(0, 0, 0, 0.5));
     transition: transform 0.2s ease;
 }
 
@@ -278,9 +271,9 @@ a:hover {
     background-color: var(--mc-dark-stone);
     border: 5px solid var(--mc-darkest-stone);
     box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.8);
-    padding: 15px 30px;
+    padding: 10px 20px; /* Padding reducido */
     margin-top: 0;
-    margin-bottom: 40px;
+    margin-bottom: 25px; /* Margen reducido */
     max-width: 600px;
     width: 90%;
     gap: 20px;
@@ -433,28 +426,21 @@ a:hover {
 
 /* Ajustes del contenedor principal de la página de normas */
 .hero-section-normas .hero-main-content {
-    justify-content: flex-start;
-    /* Alinea los elementos (logo, título, libro) hacia la parte superior */
-    gap: 0;
-    /* Desactiva el 'gap' global para controlar el espaciado con márgenes individuales */
-    padding-top: 5vh;
-    /* Pequeño padding arriba para que no pegue al borde superior */
-    padding-bottom: 5vh;
-    /* Pequeño padding abajo para evitar desbordamientos y dejar espacio */
-    box-sizing: border-box;
-    /* Asegura que el padding se incluya en la altura total */
+    justify-content: flex-start; /* Alinea los elementos (logo, título, libro) hacia la parte superior */
+    gap: 0; /* Desactiva el 'gap' global para controlar el espaciado con márgenes individuales */
+    padding-top: 3vh; /* Padding reducido */
+    padding-bottom: 3vh; /* Padding reducido */
+    box-sizing: border-box; /* Asegura que el padding se incluya en la altura total */
 }
 
 .hero-section-normas .main-logo-small {
-    width: 150px;
-    margin-bottom: 15px;
-    /* Espacio debajo del logo */
+    width: 100px; /* Tamaño más pequeño */
+    margin-bottom: 10px; /* Margen reducido */
 }
 
 .hero-section-normas .server-title-image-small {
-    max-width: 600px;
-    margin-bottom: 30px;
-    /* Espacio debajo del título */
+    max-width: 400px; /* Tamaño más pequeño */
+    margin-bottom: 20px; /* Margen reducido */
 }
 
 .rules-book-container {
@@ -463,25 +449,18 @@ a:hover {
     box-shadow: none;
     padding: 0;
     margin-top: auto;
-    /* Empuja el contenedor del libro hacia abajo, ayudando a centrarlo en el espacio restante */
     margin-bottom: auto;
-    /* Ayuda a un centrado más equilibrado */
     width: 90vw;
     max-width: 1200px;
-    /* Ancho máximo del contenedor para pantallas grandes */
     position: relative;
     z-index: 5;
     margin-left: auto;
     margin-right: auto;
     display: flex;
-    /* Convierte este contenedor en flex para centrar su contenido (el libro y el disclaimer) */
     flex-direction: column;
     align-items: center;
-    /* Centra horizontalmente el libro y el disclaimer */
     flex-grow: 1;
-    /* Permite que el contenedor del libro crezca para ocupar el espacio disponible */
     overflow: hidden;
-    /* Importante para que el libro no se salga si es demasiado grande */
 }
 
 .book-display-area {
@@ -495,22 +474,18 @@ a:hover {
 
 /* ESTILO CLAVE: Ajuste de tamaño y centrado para la IMAGEN DEL LIBRO */
 .rules-final-image {
-    width: 90%;
-    /* La imagen ocupará un 90% del ancho de su contenedor */
-    max-width: 700px;
-    /* LIMITE CLAVE: La imagen del libro no excederá este ancho, haciéndola más pequeña */
+    width: 95%; /* La imagen ocupará un 95% del ancho de su contenedor */
+    max-width: 500px; /* LIMITE CLAVE: La imagen del libro no excederá este ancho, haciéndola más pequeña */
     height: auto;
     display: block;
     margin: 0 auto;
-    /* Centra la imagen horizontalmente dentro de su contenedor */
-    image-rendering: pixelated;
-    filter: drop-shadow(8px 8px 4px rgba(0, 0, 0, 0.7));
+    image_rendering: pixelated;
+    filter: drop_shadow(8px 8px 4px rgba(0, 0, 0, 0.7));
 }
 
 .book-disclaimer {
     text-align: center;
     margin-top: 15px;
-    /* Espacio debajo del libro */
     font-size: 0.9em;
     color: var(--mc-text-light-gray);
     text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.7);
@@ -538,65 +513,62 @@ a:hover {
     }
 
     .hero-main-content {
-        padding: 15px;
+        padding: 10px; /* Padding reducido en tablets */
         height: 100%;
         justify-content: center;
-        gap: 20px;
-        /* Gap reducido */
+        gap: 15px; /* Gap reducido en tablets */
     }
 
     /* AJUSTES PARA index.html EN TABLETS */
     .main-logo {
         width: 60%;
-        max-width: 200px;
-        margin-bottom: 15px;
+        max-width: 150px; /* Max width más pequeño */
+        margin-bottom: 10px;
     }
 
     .server-title-image {
         width: 75%;
-        max-width: 550px;
-        margin-bottom: 20px;
+        max-width: 400px; /* Max width más pequeño */
+        margin-bottom: 15px;
     }
 
     .tagline {
-        font-size: 1.3em;
-        margin-bottom: 30px;
+        font-size: 1.1em; /* Fuente más pequeña */
+        margin-bottom: 20px;
     }
 
     .main-links-tray {
-        gap: 15px;
-        margin-top: 30px;
-        margin-bottom: 20px;
+        gap: 10px; /* Gap de botones más pequeño */
+        margin-top: 20px;
+        margin-bottom: 15px;
     }
 
     .nav-img-btn {
-        min-width: 90px;
-        max-width: 130px;
-        padding: 10px 6px;
+        min-width: 70px; /* Ancho mínimo de botón más pequeño */
+        max-width: 100px; /* Ancho máximo de botón más pequeño */
+        padding: 8px 4px; /* Padding de botón más pequeño */
     }
 
     .nav-img-btn .nav-img {
-        width: 45px;
+        width: 35px; /* Iconos más pequeños */
     }
 
     .nav-img-btn span {
-        font-size: 0.9em;
+        font-size: 0.8em; /* Texto de botón más pequeño */
     }
 
     .ip-players-area {
-        padding: 10px 20px;
-        gap: 15px;
+        padding: 8px 15px; /* Padding de área IP más pequeño */
+        gap: 10px;
         max-width: 500px;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
     }
-
     .ip-address-text {
-        font-size: 1.1em;
+        font-size: 0.9em; /* Texto IP más pequeño */
     }
-
     .copy-ip-btn {
-        font-size: 0.9em;
-        padding: 6px 12px;
+        font-size: 0.8em; /* Botón copiar más pequeño */
+        padding: 5px 10px;
     }
 
     /* Ajustes específicos para la página de normas en 768px */
@@ -604,33 +576,27 @@ a:hover {
         height: 100vh;
         min-height: auto;
     }
-
     .hero-section-normas .hero-main-content {
         justify-content: flex-start;
-        padding-top: 3vh;
-        padding-bottom: 3vh;
+        padding-top: 2vh; /* Padding reducido */
+        padding-bottom: 2vh; /* Padding reducido */
     }
-
     .hero-section-normas .main-logo-small {
-        width: 120px;
-        margin-bottom: 10px;
+        width: 90px; /* Más pequeño */
+        margin-bottom: 8px;
     }
-
     .hero-section-normas .server-title-image-small {
-        max-width: 450px;
-        margin-bottom: 20px;
+        max-width: 300px; /* Más pequeño */
+        margin-bottom: 15px;
     }
-
     .rules-book-container {
         margin-top: auto;
         margin-bottom: auto;
     }
-
     .rules-final-image {
-        max-width: 550px;
+        max-width: 400px; /* Más pequeño para tablets */
         width: 90%;
     }
-
     .book-disclaimer {
         margin-top: 10px;
     }
@@ -643,104 +609,94 @@ a:hover {
     }
 
     .hero-main-content {
-        gap: 15px;
-        /* Gap aún más reducido */
-        padding: 10px;
+        gap: 10px; /* Gap más pequeño en móviles */
+        padding: 5px; /* Padding más pequeño en móviles */
     }
 
     /* AJUSTES PARA index.html EN MÓVILES */
     .main-logo {
         width: 50%;
-        max-width: 150px;
-        margin-bottom: 10px;
+        max-width: 100px; /* Max width para móviles */
+        margin-bottom: 5px;
     }
 
     .server-title-image {
         width: 70%;
-        max-width: 350px;
-        margin-bottom: 15px;
+        max-width: 250px; /* Max width para móviles */
+        margin-bottom: 10px;
     }
 
     .tagline {
-        font-size: 1.0em;
-        margin-bottom: 20px;
+        font-size: 0.9em; /* Fuente más pequeña para móviles */
+        margin-bottom: 10px;
     }
 
     .main-links-tray {
-        gap: 10px;
-        margin-top: 20px;
-        margin-bottom: 15px;
+        gap: 8px;
+        margin-top: 15px;
+        margin-bottom: 10px;
     }
 
     .nav-img-btn {
-        min-width: 70px;
-        max-width: 100px;
-        padding: 8px 4px;
+        min-width: 60px;
+        max-width: 80px;
+        padding: 6px 3px;
     }
 
     .nav-img-btn .nav-img {
-        width: 40px;
+        width: 30px;
         margin-bottom: 4px;
     }
 
     .nav-img-btn span {
-        font-size: 0.8em;
+        font-size: 0.7em;
     }
 
     .ip-players-area {
-        flex-direction: column;
-        /* Apilar elementos verticalmente en móviles */
+        flex-direction: column; /* Apilar elementos en móviles */
         align-items: center;
-        padding: 8px 15px;
-        gap: 10px;
+        padding: 5px 10px;
+        gap: 8px;
         max-width: 90%;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
     }
-
-    .players-count,
-    .ip-display-area {
+    .players-count, .ip-display-area {
         width: 100%;
         justify-content: center;
         padding: 6px 10px;
     }
-
     .ip-address-text {
-        font-size: 1.0em;
+        font-size: 0.8em; /* IP más pequeña */
     }
-
     .copy-ip-btn {
-        font-size: 0.8em;
-        padding: 5px 10px;
+        font-size: 0.7em; /* Botón copiar más pequeño */
+        padding: 4px 8px;
     }
 
     /* Ajustes específicos para la página de normas en 480px */
     .hero-section-normas .hero-main-content {
         justify-content: flex-start;
-        padding-top: 2vh;
-        padding-bottom: 2vh;
+        padding-top: 1vh; /* Padding mínimo */
+        padding-bottom: 1vh; /* Padding mínimo */
     }
-
     .hero-section-normas .main-logo-small {
-        width: 80px;
-        margin-bottom: 8px;
+        width: 70px; /* Más pequeño */
+        margin-bottom: 5px;
     }
-
     .hero-section-normas .server-title-image-small {
-        max-width: 280px;
-        margin-bottom: 15px;
+        max-width: 200px; /* Más pequeño */
+        margin-bottom: 10px;
     }
-
     .rules-book-container {
         margin-top: auto;
         margin-bottom: auto;
     }
-
     .rules-final-image {
-        max-width: 350px;
+        max-width: 300px; /* Más pequeño para móviles */
         width: 95%;
     }
-
     .book-disclaimer {
-        margin-top: 8px;
+        margin-top: 5px;
+        font-size: 0.8em;
     }
 }
