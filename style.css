@@ -317,6 +317,8 @@ a:hover {
     letter-spacing: 0.5px;
     user-select: all;
     cursor: text;
+    flex-shrink: 0;
+    /* IMPT: Evita que el texto de la IP se encoja si no hay espacio */
 }
 
 .copy-ip-btn {
@@ -333,7 +335,7 @@ a:hover {
     align-items: center;
     gap: 8px;
     text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
-    white-space: nowrap;
+    /* white-space: nowrap; ELIMINADO: Permite que el texto se envuelva */
 }
 
 .copy-ip-btn:hover {
@@ -438,23 +440,16 @@ a:hover {
     /* Asegura que el padding se incluya en la altura total */
 }
 
-/* AJUSTES IMPORTANTES: Tamaño de holyland_logo.png y holyland.png en normas.html */
+/* Ajustes para los logos superiores en normas.html */
 .hero-section-normas .main-logo-small {
-    width: 150px;
-    /* Tamaño base más grande */
-    max-width: 180px;
-    /* Un poco más grande para pantallas grandes */
-    margin-bottom: 15px;
+    width: 100px;
+    margin-bottom: 10px;
 }
 
 .hero-section-normas .server-title-image-small {
-    width: 80%;
-    /* Asegura que ocupe más ancho */
-    max-width: 550px;
-    /* ¡Más grande para PC! */
-    margin-bottom: 25px;
+    max-width: 400px;
+    margin-bottom: 20px;
 }
-
 
 .rules-book-container {
     background-color: transparent;
@@ -464,7 +459,6 @@ a:hover {
     margin-top: auto;
     margin-bottom: auto;
     width: 90vw;
-    /* El contenedor ocupa 90% del ancho del viewport */
     max-width: 1200px;
     position: relative;
     z-index: 5;
@@ -489,9 +483,9 @@ a:hover {
 /* ESTILO CLAVE: Ajuste de tamaño y centrado para la IMAGEN DEL LIBRO (visual) */
 .rules-final-image {
     width: 100%;
-    /* La imagen ocupará un 100% del ancho de su contenedor */
+    /* La imagen ocupará el 100% del ancho de su contenedor */
     max-width: 1180px;
-    /* ¡AÚN MÁS GRANDE PARA PC! Casi el máximo del contenedor padre (1200px) */
+    /* Tamaño grande para PC */
     height: auto;
     display: block;
     margin: 0 auto;
@@ -507,21 +501,18 @@ a:hover {
     transform: translate(-50%, -50%);
     width: 85%;
     height: 80%;
+    /* Altura relativa al elemento posicionado padre */
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
     z-index: 6;
     padding: 20px;
     box-sizing: border-box;
-    /* Ajustes para asegurar que el texto sea legible sobre el fondo */
     background-color: #f7f7f7;
-    /* Color de fondo claro para las páginas */
     border: 1px solid #ddd;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     color: #333;
-    /* Color de texto oscuro para contraste */
     overflow-y: auto;
-    /* Permite desplazamiento si el contenido es demasiado largo */
 }
 
 .page-left,
@@ -530,13 +521,11 @@ a:hover {
     margin: 0 10px;
     text-align: left;
     padding: 25px;
-    /* Padding de las páginas */
 }
 
 .page-left h3,
 .page-right h3 {
     font-size: 1.4em;
-    /* Mantener para PC, pero se ajustará en media queries */
     margin-bottom: 10px;
     color: var(--mc-dark-stone);
 }
@@ -549,7 +538,6 @@ a:hover {
 .book-pages-content li {
     margin-bottom: 8px;
     font-size: 1em;
-    /* Mantener para PC, pero se ajustará en media queries */
     line-height: 1.4;
 }
 
@@ -655,38 +643,31 @@ a:hover {
         padding-bottom: 2vh;
     }
 
-    /* AUMENTO DE TAMAÑO para holyland_logo.png y holyland.png en tablets */
     .hero-section-normas .main-logo-small {
-        width: 120px;
-        /* Más grande en tablets */
-        max-width: 150px;
-        margin-bottom: 10px;
+        width: 90px;
+        margin-bottom: 8px;
     }
 
     .hero-section-normas .server-title-image-small {
-        width: 90%;
-        /* Ocupa más ancho en tablets */
-        max-width: 450px;
-        /* Más grande en tablets */
-        margin-bottom: 20px;
+        max-width: 300px;
+        margin-bottom: 15px;
     }
 
     .rules-book-container {
         margin-top: auto;
         margin-bottom: auto;
         width: 95vw;
-        /* Contenedor más ancho para tablets */
+        /* Asegura que el contenedor del libro ocupe casi todo el ancho */
     }
 
     .rules-final-image {
-        /* ¡AQUÍ ESTÁ EL CAMBIO! Usando vw para tablets para que ocupe casi todo el ancho */
         max-width: 90vw;
-        /* Asegura que ocupe el 90% del ancho del viewport */
+        /* Adapta el tamaño máximo al 90% del ancho del viewport en tablets */
         width: 100%;
+        /* La imagen siempre llena el 100% del contenedor hasta su max-width */
     }
 
     .book-pages-content {
-        /* Ajuste de tamaño de fuente para tablets */
         width: 90%;
         height: auto;
         /* Permitir que la altura se ajuste al contenido */
@@ -696,19 +677,16 @@ a:hover {
     .page-left,
     .page-right {
         margin: 0 8px;
-        /* Reducir el margen entre páginas en tablets */
         padding: 20px;
     }
 
     .page-left h3,
     .page-right h3 {
         font-size: 1.6em;
-        /* Títulos más grandes */
     }
 
     .book-pages-content li {
         font-size: 1.2em;
-        /* Texto de lista más grande */
     }
 
     .book-disclaimer {
@@ -802,20 +780,14 @@ a:hover {
         padding-bottom: 1vh;
     }
 
-    /* AUMENTO DE TAMAÑO para holyland_logo.png y holyland.png en móviles */
     .hero-section-normas .main-logo-small {
-        width: 100px;
-        /* Más grande en móviles */
-        max-width: 120px;
-        margin-bottom: 8px;
+        width: 70px;
+        margin-bottom: 5px;
     }
 
     .hero-section-normas .server-title-image-small {
-        width: 95%;
-        /* Ocupa más ancho en móviles */
-        max-width: 350px;
-        /* Más grande en móviles */
-        margin-bottom: 15px;
+        max-width: 200px;
+        margin-bottom: 10px;
     }
 
     .rules-book-container {
@@ -826,41 +798,35 @@ a:hover {
     }
 
     .rules-final-image {
-        /* ¡AQUÍ ESTÁ EL CAMBIO! Usando vw para móviles para que ocupe casi todo el ancho */
         max-width: 95vw;
-        /* Asegura que ocupe el 95% del ancho del viewport */
+        /* Adapta el tamaño máximo al 95% del ancho del viewport en móviles */
         width: 100%;
+        /* La imagen siempre llena el 100% del contenedor hasta su max-width */
     }
 
     .book-pages-content {
-        /* Ajuste de tamaño de fuente para móviles */
         flex-direction: column;
         width: 95%;
         height: auto;
         /* Permitir que la altura se ajuste al contenido */
         padding: 10px;
-        /* Ajuste de padding */
         top: 50%;
     }
 
     .page-left,
     .page-right {
         margin: 0;
-        /* Eliminar margen horizontal entre páginas */
         margin-bottom: 10px;
-        /* Espacio entre las páginas apiladas */
         padding: 15px;
     }
 
     .page-left h3,
     .page-right h3 {
         font-size: 1.4em;
-        /* Títulos más grandes */
     }
 
     .book-pages-content li {
         font-size: 1.1em;
-        /* Texto de lista más grande */
     }
 
     .book-disclaimer {
