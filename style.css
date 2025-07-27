@@ -270,7 +270,7 @@ a:hover {
     align-items: center;
     background-color: var(--mc-dark-stone);
     border: 5px solid var(--mc-darkest-stone);
-    box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.8);
+    box-shadow: none;
     padding: 10px 20px;
     margin-top: 0;
     margin-bottom: 25px; /* REVERTIDO de 20px a 25px */
