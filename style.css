@@ -1,6 +1,6 @@
 /* Custom Minecraft Font Import */
 /* Fuentes comentadas porque los archivos .ttf no se encontraron, causando 404 errores.
-    Si tienes estos archivos, asegúrate de que estén en la carpeta 'fonts/' y descomenta estas reglas. */
+   Si tienes estos archivos, asegúrate de que estén en la carpeta 'fonts/' y descomenta estas reglas. */
 /* @font-face {
     font-family: 'MinecraftRegular';
     src: url('fonts/MinecraftRegular.ttf') format('truetype');
@@ -48,7 +48,7 @@
 
     /* Variables para texturas de fondo (corregidas) */
     /* Las siguientes texturas estaban causando errores 404 y han sido removidas.
-        Si tienes estas imágenes, asegúrate de que estén en la carpeta 'images/' y descomenta estas líneas. */
+       Si tienes estas imágenes, asegúrate de que estén en la carpeta 'images/' y descomenta estas líneas. */
     --texture-world-bg: none;
     /* Antes: url('images/minecraft_dirt_bg.png'); */
     --texture-dark-panel-bg: none;
@@ -75,10 +75,12 @@ body {
     background-repeat: repeat;
     color: var(--mc-text-white);
     line-height: 1.6;
-    overflow: hidden;
-    /* ¡IMPORTANTE! Evita desplazamiento vertical y horizontal en toda la página */
-    height: 100vh;
-    /* ¡IMPORTANTE! Asegura que el cuerpo ocupe el 100% de la altura del viewport */
+    overflow-x: hidden;
+    /* Evita solo el desplazamiento horizontal en toda la página */
+    height: 100%;
+    /* Permite que el contenido determine la altura si es más de 100vh */
+    min-height: 100vh;
+    /* Asegura que el cuerpo ocupe al menos el 100% de la altura del viewport */
     image-rendering: pixelated;
     -webkit-font-smoothing: none;
     font-smooth: never;
@@ -318,7 +320,6 @@ a:hover {
     user-select: all;
     cursor: text;
     flex-shrink: 0;
-    /* IMPT: Evita que el texto de la IP se encoja si no hay espacio */
 }
 
 .copy-ip-btn {
@@ -420,8 +421,10 @@ a:hover {
 
 /* SECCIÓN DE NORMAS (Ajustes específicos para esta página) */
 .hero-section-normas {
-    height: 100vh;
-    min-height: auto;
+    height: auto;
+    /* Permite que la sección se expanda verticalmente */
+    min-height: 100vh;
+    /* Asegura que al menos ocupe toda la altura del viewport */
     padding-bottom: 0;
     box-sizing: border-box;
 }
@@ -438,6 +441,8 @@ a:hover {
     /* Padding reducido */
     box-sizing: border-box;
     /* Asegura que el padding se incluya en la altura total */
+    flex-grow: 1;
+    /* Permite que este contenedor crezca y ocupe el espacio disponible */
 }
 
 /* Ajustes para los logos superiores en normas.html */
@@ -457,7 +462,9 @@ a:hover {
     box-shadow: none;
     padding: 0;
     margin-top: auto;
+    /* Empuja el contenedor del libro hacia abajo si hay espacio arriba */
     margin-bottom: auto;
+    /* Empuja el contenedor del libro hacia arriba si hay espacio abajo */
     width: 90vw;
     max-width: 1200px;
     position: relative;
@@ -469,6 +476,7 @@ a:hover {
     align-items: center;
     flex-grow: 1;
     overflow: hidden;
+    /* Mantiene el contenido del libro dentro del contenedor */
 }
 
 .book-display-area {
@@ -499,28 +507,62 @@ a:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 85%;
-    height: 80%;
-    /* Altura relativa al elemento posicionado padre */
+    width: 75%;
+    /* Adjusted width - can be refined based on visual fit with the book image */
+    max-width: 900px;
+    /* Max width to prevent it from becoming too wide on large screens */
+    height: 65%;
+    /* Adjusted height */
+    max-height: 550px;
+    /* Max height to prevent it from becoming too tall */
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
     z-index: 6;
-    padding: 20px;
+    padding: 3% 6%;
+    /* Use percentage padding for responsiveness */
     box-sizing: border-box;
-    background-color: #f7f7f7;
-    border: 1px solid #ddd;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    background-color: transparent;
+    /* Make background transparent to show book image */
+    border: none;
+    /* Remove border */
+    box-shadow: none;
+    /* Remove box shadow */
     color: #333;
     overflow-y: auto;
+    /* Permite desplazamiento vertical si el contenido excede la altura */
+    font-family: monospace;
+    /* As per previous thought's suggestion for text style */
+    font-size: 0.9em;
+    /* As per previous thought's suggestion for text style */
+    line-height: 1.5;
+    /* As per previous thought's suggestion for text style */
+    text-shadow: 0.5px 0.5px 0px rgba(255, 255, 255, 0.5);
+    /* As per previous thought's suggestion for text style */
 }
 
 .page-left,
 .page-right {
     flex: 1;
-    margin: 0 10px;
+    width: 48%;
+    /* Ensure they take appropriate width within the flex container */
+    margin: 0 5px;
+    /* Adjust margin between pages */
     text-align: left;
-    padding: 25px;
+    padding: 10px 15px;
+    /* Adjusted padding for better fit */
+    box-sizing: border-box;
+    /* Crucial for padding calculation */
+    background-color: transparent;
+    /* Ensure pages are transparent */
+    border: none;
+    /* No borders for pages */
+    box-shadow: none;
+    /* No shadows for pages */
+    overflow-y: auto;
+    /* Allow scrolling if content overflows */
+    max-height: 100%;
+    /* Ensure pages don't exceed the height of their parent */
 }
 
 .page-left h3,
@@ -633,8 +675,10 @@ a:hover {
 
     /* Ajustes específicos para la página de normas en 768px (Tablets) */
     .hero-section-normas {
-        height: 100vh;
-        min-height: auto;
+        height: auto;
+        /* Permite que el contenido determine la altura */
+        min-height: 100vh;
+        /* Asegura que al menos ocupe toda la altura del viewport */
     }
 
     .hero-section-normas .hero-main-content {
@@ -668,16 +712,23 @@ a:hover {
     }
 
     .book-pages-content {
-        width: 90%;
-        height: auto;
-        /* Permitir que la altura se ajuste al contenido */
-        top: 50%;
+        width: 85%;
+        /* Adjusted for tablet */
+        max-width: 700px;
+        /* Adjusted max-width for tablet */
+        height: 70%;
+        /* Adjusted height for tablet */
+        max-height: 450px;
+        /* Adjusted max-height for tablet */
+        padding: 2% 5%;
+        /* Adjusted padding */
     }
 
     .page-left,
     .page-right {
-        margin: 0 8px;
-        padding: 20px;
+        margin: 0 5px;
+        padding: 8px 12px;
+        /* Adjusted padding */
     }
 
     .page-left h3,
@@ -806,18 +857,27 @@ a:hover {
 
     .book-pages-content {
         flex-direction: column;
-        width: 95%;
+        width: 90%;
+        /* Adjusted for mobile */
+        max-width: 350px;
+        /* Adjusted max-width for mobile */
         height: auto;
-        /* Permitir que la altura se ajuste al contenido */
+        /* Let height adjust for mobile stacking */
+        max-height: 80vh;
+        /* Max height based on viewport height for mobile */
         padding: 10px;
         top: 50%;
     }
 
     .page-left,
     .page-right {
+        width: 100%;
+        /* Full width for stacked pages */
         margin: 0;
-        margin-bottom: 10px;
-        padding: 15px;
+        margin-bottom: 8px;
+        /* Space between stacked pages */
+        padding: 10px;
+        /* Adjusted padding for mobile */
     }
 
     .page-left h3,
