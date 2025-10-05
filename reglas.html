@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reglas | Holyland</title>
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="shortcut icon" href="logo.png" type="image/png">
+
+    <style>
+        /* Estilos adicionales para la página de Reglas, usando tus variables */
+        .rules-content {
+            background-color: var(--background-light-dark);
+            padding: 80px 0;
+            min-height: 80vh;
+        }
+
+        .rules-tabs {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .rules-tab-btn {
+            background: none;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 10px 20px;
+            margin: 0 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .rules-tab-btn.active {
+            background-color: var(--primary-color);
+            color: var(--background-dark);
+        }
+
+        .rules-list {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .rule-item {
+            background-color: var(--background-dark);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .rule-item h3 {
+            font-size: 1.5em;
+            color: var(--white-holyland);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .rule-item h3 span {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--background-dark);
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 50%;
+            margin-right: 15px;
+            font-size: 0.8em;
+            font-weight: 900;
+        }
+
+        .rule-item ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 10px;
+        }
+
+        .rule-item ul li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+            color: #ccc;
+        }
+
+        .rule-item ul li::before {
+            content: '•';
+            color: var(--blue-holyland);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header" style="background-color: rgba(0, 0, 0, 0.8);">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="logo.png" alt="Holyland Logo">
+                </a>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="index.html#about">Sobre Nosotros</a></li>
+                    <li><a href="index.html#faq">Preguntas</a></li>
+                    <li><a href="index.html#modes">Modalidades</a></li>
+                    <li><a href="reglas.html" style="color: var(--primary-color);">Reglas</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn">Guías <span class="arrow-down">&#9660;</span></a>
+                        <div class="dropdown-content">
+                            <a href="#">Ayuda (Próximamente)</a>
+                            <a href="#">Videos (Próximamente)</a>
+                            <a href="#">Tutoriales (Próximamente)</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <div class="header-buttons">
+                <a href="https://tienda.holylandmc.com" target="_blank" class="btn btn-primary">Tienda</a>
+                <a href="https://discord.holylandmc.com" target="_blank" class="btn btn-secondary">Discord</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="rules-content">
+        <div class="container">
+            <h2 class="section-title reveal-item bottom">REGLAS</h2>
+            <p class="section-subtitle reveal-item bottom">Normas para la mejor convivencia en la comunidad</p>
+
+            <div class="rules-tabs reveal-item bottom">
+                <button class="rules-tab-btn active" data-tab="general">Reglas Generales</button>
+                <button class="rules-tab-btn" data-tab="minecraft">Reglas de Minecraft</button>
+            </div>
+
+            <div class="rules-list reveal-item bottom" id="general-rules">
+
+                <div class="rule-item">
+                    <h3><span>1</span>Mal uso de sistemas</h3>
+                    <p>Está prohibido hacer uso indebido de sistemas (tickets, sugerencias, etc.) con fines
+                        malintencionados o para spam. Úsalos solo para lo que fueron creados.</p>
+                    <ul>
+                        <li>Solo se permite una sugerencia por mensaje en el canal correspondiente.</li>
+                        <li>No usar el sistema de sugerencias para reportar bugs o fallos del servidor.</li>
+                    </ul>
+                </div>
+
+                <div class="rule-item">
+                    <h3><span>2</span>Publicidad y Retiro de Boost</h3>
+                    <p>No está permitido mencionar nombres de otros servidores (publicidad) o retirar tu boost después
+                        de haber reclamado una recompensa.</p>
+                </div>
+
+                <div class="rule-item">
+                    <h3><span>3</span>Contenido Inapropiado</h3>
+                    <p>Está prohibido enviar, compartir o referenciar contenido sexualmente explícito, gore, o cualquier
+                        material que pueda ser considerado ofensivo, violento o ilegal.</p>
+                </div>
+
+                <div class="rule-item">
+                    <h3><span>4</span>Suplantación de identidad</h3>
+                    <p>Está totalmente prohibido hacerse pasar por miembros del staff, influencers o cualquier otra
+                        persona de la comunidad con fines maliciosos.</p>
+                </div>
+            </div>
+
+            <div class="rules-list reveal-item bottom" id="minecraft-rules" style="display:none;">
+
+                <div class="rule-item">
+                    <h3><span>1</span>Uso de Clientes/Mods Ilegales (Hacks)</h3>
+                    <p>El uso de clientes, mods o packs de texturas que proporcionen ventajas injustas (hacks, X-ray,
+                        auto-clickers, etc.) está estrictamente prohibido y será sancionado con baneo permanente.</p>
+                </div>
+
+                <div class="rule-item">
+                    <h3><span>2</span>Abuso de Bugs o Glitches</h3>
+                    <p>Explotar fallos o errores del servidor (bugs o glitches) para obtener beneficios, objetos o
+                        acceso indebido está prohibido. Debes reportarlos inmediatamente al staff.</p>
+                </div>
+
+                <div class="rule-item">
+                    <h3><span>3</span>Comportamiento Tóxico o Racista</h3>
+                    <p>El acoso, las amenazas, el lenguaje ofensivo, racista, sexista o discriminatorio contra otros
+                        jugadores o el staff no será tolerado en el chat del juego.</p>
+                </div>
+
+                <div class="rule-item">
+                    <h3><span>4</span>Spam y Flood</h3>
+                    <p>Hacer spam repetitivo de mensajes, flood de texto o intentar saturar el chat del juego está
+                        prohibido y será sancionado con mute o baneo temporal.</p>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">
+                <img src="logo.png" alt="Holyland Logo">
+                <span>Holyland</span>
+            </div>
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="index.html#about">Sobre Nosotros</a></li>
+                    <li><a href="index.html#faq">Preguntas</a></li>
+                    <li><a href="index.html#modes">Modalidades</a></li>
+                    <li><a href="index.html#moments">Momentos</a></li>
+                    <li><a href="reglas.html">Reglas</a></li>
+                    <li><a href="#">Guías (Próximamente)</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Holyland. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <script>
+        // Este bloque de JS estaba redundante en index.html, pero es CLAVE aquí. 
+        // Lo muevo dentro del script.js para centralizar la lógica de pestaña.
+        // Si ya está en script.js, puedes eliminar este bloque.
+        // Pero si quieres mantenerlo aquí (como en tu ejemplo), está bien.
+        document.addEventListener('DOMContentLoaded', () => {
+            const generalBtn = document.querySelector('[data-tab="general"]');
+            const minecraftBtn = document.querySelector('[data-tab="minecraft"]');
+            const generalRules = document.getElementById('general-rules');
+            const minecraftRules = document.getElementById('minecraft-rules');
+            const allBtns = document.querySelectorAll('.rules-tab-btn');
+
+            function switchTab(tabName) {
+                // Remueve 'active' de todos los botones
+                allBtns.forEach(btn => btn.classList.remove('active'));
+
+                if (tabName === 'general') {
+                    generalRules.style.display = 'block';
+                    minecraftRules.style.display = 'none';
+                    generalBtn.classList.add('active');
+                } else if (tabName === 'minecraft') {
+                    generalRules.style.display = 'none';
+                    minecraftRules.style.display = 'block';
+                    minecraftBtn.classList.add('active');
+                }
+            }
+
+            // Inicializar en la pestaña General
+            switchTab('general');
+
+            generalBtn.addEventListener('click', () => switchTab('general'));
+            minecraftBtn.addEventListener('click', () => switchTab('minecraft'));
+        });
+    </script>
+</body>
+
+</html>
