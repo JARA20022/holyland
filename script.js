@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const MC_API_URL = `https://api.mcsrvstat.us/2/${MINECRAFT_SERVER_IP}`;
     const DISCORD_API_URL = `https://discord.com/api/guilds/${DISCORD_WIDGET_ID}/widget.json`;
 
-
     const fetchServerData = async () => {
         const playerCountElement = document.getElementById('player-count');
         const discordCountElement = document.getElementById('discord-count');
@@ -35,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const fetchDiscordCount = async () => {
             if (!discordCountElement) return; // Salir si el elemento no existe (ej. reglas.html)
             try {
+                // NOTA: Esta API requiere CORS habilitado en el servidor de Discord
                 const response = await fetch(DISCORD_API_URL);
                 if (!response.ok) throw new Error('Discord API request failed. Check Widget ID/Status.');
                 const data = await response.json();
@@ -56,32 +56,33 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // ----------------------------------------------------
-    // 1. EFECTO MÁQUINA DE ESCRIBIR (TYPEWRITER) - CORREGIDO
+    // 1. EFECTO MÁQUINA DE ESCRIBIR (TYPEWRITER) - MANTENIDA
     // ----------------------------------------------------
     const typewriterTextElement = document.querySelector('.typewriter-text');
     if (typewriterTextElement) {
         const text = typewriterTextElement.getAttribute('data-text');
         typewriterTextElement.innerHTML = ''; // Limpiar contenido
 
+        // Volvemos a tu lógica original de envolver cada letra en un span
         text.split('').forEach(char => {
             const span = document.createElement('span');
             span.textContent = char;
             typewriterTextElement.appendChild(span);
         });
 
-        const typingDuration = text.length * 0.1;
+        // Duración basada en la longitud del texto
+        const typingDuration = 2; // Usamos 2s como constante para la animación total
+        const steps = text.length;
 
         typewriterTextElement.classList.add('holyland-styled');
         typewriterTextElement.style.animation =
-            `typing ${typingDuration}s steps(${text.length}, end) forwards, 
+            `typing ${typingDuration}s steps(${steps}, end) forwards, 
              blink-caret 0.75s step-end infinite`;
-        typewriterTextElement.style.width = 'fit-content';
 
-        typewriterTextElement.addEventListener('animationend', (event) => {
-            if (event.animationName === 'typing') {
-                typewriterTextElement.classList.add('finished');
-            }
-        });
+        // Aseguramos que el cursor desaparezca al final
+        setTimeout(() => {
+            typewriterTextElement.classList.add('finished');
+        }, typingDuration * 1000 + 500); // 2.5 segundos
     }
 
     // ----------------------------------------------------
@@ -210,10 +211,79 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Inicializar
-        switchTab('general');
+        if (generalBtn) switchTab('general');
 
-        generalBtn.addEventListener('click', () => switchTab('general'));
-        minecraftBtn.addEventListener('click', () => switchTab('minecraft'));
+        if (generalBtn) generalBtn.addEventListener('click', () => switchTab('general'));
+        if (minecraftBtn) minecraftBtn.addEventListener('click', () => switchTab('minecraft'));
+    }
+
+    // ----------------------------------------------------
+    // 7. LÓGICA DEL MENÚ HAMBURGUESA (Móvil) - INTEGRADO
+    // ----------------------------------------------------
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navbar = document.querySelector('.navbar');
+
+    if (menuToggle && navbar) {
+        // Función para alternar el menú
+        menuToggle.addEventListener('click', function () {
+            navbar.classList.toggle('active');
+
+            // Cambiar el icono (hamburguesa <-> cruz)
+            const icon = menuToggle.querySelector('i');
+            if (navbar.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+                document.body.style.overflow = 'hidden';
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Cerrar el menú si se hace clic en un enlace (para facilitar la navegación)
+        const navLinks = document.querySelectorAll('.navbar a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function () {
+                // Solo si el menú está activo, lo cerramos
+                if (navbar.classList.contains('active')) {
+                    navbar.classList.remove('active');
+                    menuToggle.querySelector('i').classList.remove('fa-times');
+                    menuToggle.querySelector('i').classList.add('fa-bars');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+    }
+
+    // ----------------------------------------------------
+    // 8. LÓGICA DE ANIMACIÓN PARA BOTONES DE CTA (Secuencial) - INTEGRADO
+    // ----------------------------------------------------
+    const ctaSection = document.querySelector('.call-to-action');
+    const ctaStoreButton = document.querySelector('.call-to-action .btn-store');
+    const ctaDiscordButton = document.querySelector('.call-to-action .btn-discord');
+
+    if (ctaSection && ctaStoreButton && ctaDiscordButton) {
+        const ctaObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // 1. Inicia la animación del botón de Tienda inmediatamente
+                    ctaStoreButton.classList.add('animate-in');
+
+                    // 2. Inicia la animación del botón de Discord después de un retraso
+                    setTimeout(() => {
+                        ctaDiscordButton.classList.add('animate-in');
+                    }, 300); // Retraso de 300ms
+
+                    ctaObserver.unobserve(entry.target); // Detiene la observación una vez animado
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+
+        // Aseguramos que la sección de CTA sea observada por el Intersection Observer de revelado
+        ctaObserver.observe(ctaSection);
     }
 
     // LLAMADA FINAL a la función de conteo
