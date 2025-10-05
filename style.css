@@ -38,8 +38,9 @@ a,
 .btn,
 .accordion,
 .mode-item,
-.rules-tab-btn {
-    /* Agregado para el botón de Reglas */
+.rules-tab-btn,
+.menu-toggle {
+    /* Añadido .menu-toggle */
     cursor: pointer;
 }
 
@@ -210,7 +211,6 @@ ul {
     text-align: center;
     color: var(--white-holyland);
     position: relative;
-    /* Esencial para posicionar .scroll-down de forma absoluta */
     padding: 0 20px;
 }
 
@@ -275,32 +275,26 @@ ul {
     box-shadow: 0 0 20px var(--blue-holyland);
 }
 
-/* CORRECCIÓN APLICADA AQUÍ para el icono de flecha hacia abajo y posición. */
+/* CORRECCIÓN APLICADA PARA CENTRAR .scroll-down */
 .scroll-down {
     position: absolute;
-    /* Volvemos a posición absoluta */
     bottom: 30px;
-    /* 30px desde el final de la sección .hero */
     left: 50%;
-    /* Centra horizontalmente */
     transform: translateX(-50%);
-    /* Ajuste fino para centrado perfecto */
+    /* Centrado inicial (corregido) */
 
     font-size: 2.5em;
     color: var(--white-holyland);
     animation: bounce 2s infinite;
     z-index: 2;
-    /* width: 100%; Eliminar esto ya que left/transform se encargan del centrado */
-    /* text-align: center; Eliminar esto también por el mismo motivo */
 }
 
 .scroll-down a {
     color: var(--white-holyland);
     display: block;
-    /* Ocupa el espacio disponible para que el icono se centre dentro de sí mismo */
 }
 
-/* CORRECCIÓN: Se agrega translateX(-50%) a todos los pasos para mantener el centrado */
+/* CORRECCIÓN APLICADA: Incluimos translateX(-50%) en la animación para mantener el centrado */
 @keyframes bounce {
 
     0%,
@@ -912,72 +906,107 @@ section:nth-child(even) {
     /* Asegura que no tenga animaciones o posiciones raras */
 }
 
-
-/* RESPONSIVE DESIGN */
-@media (max-width: 1200px) {
-    .carousel-slide {
-        min-width: 25%;
-        /* Muestra 4 imágenes */
-    }
-
-    /* Ajuste de animación para 4 elementos */
-    @keyframes scroll-carousel {
-        0% {
-            transform: translateX(0);
-        }
-
-        100% {
-            transform: translateX(-50%);
-        }
-    }
+/* ESTILOS DEL BOTÓN DE MENÚ HAMBURGUESA (OCULTO POR DEFECTO) */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-size: 1.8em;
+    cursor: pointer;
+    z-index: 1001;
+    padding: 10px;
 }
 
-@media (max-width: 992px) {
-    .hero-subtitle {
-        font-size: 4em;
-    }
-
-    .carousel-slide {
-        min-width: 33.33%;
-        /* Muestra 3 imágenes */
-    }
-
-    /* Ajuste de animación para 3 elementos */
-    @keyframes scroll-carousel {
-        0% {
-            transform: translateX(0);
-        }
-
-        100% {
-            transform: translateX(-66.66%);
-        }
-    }
-}
-
+/* RESPONSIVE DESIGN (Menú Hamburguesa) */
 @media (max-width: 768px) {
+
     .header .container {
-        flex-direction: column;
-        gap: 15px;
+        /* Volvemos a fila para tener el logo y la hamburguesa en la misma línea */
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0;
     }
 
-    .navbar ul {
-        flex-wrap: wrap;
-        justify-content: center;
-        margin-top: 10px;
+    .header .logo {
+        flex-grow: 1;
+        /* Asegura que el logo esté a la izquierda */
+        text-align: left;
     }
 
-    .navbar ul li {
-        margin: 5px 15px;
+    /* 🟢 HACER VISIBLE EL BOTÓN Y OCULTAR BOTONES DE ESCRITORIO */
+    .menu-toggle {
+        display: block;
     }
 
     .header-buttons {
-        margin-top: 10px;
+        display: none;
+        /* Ocultamos los botones de Tienda/Discord para ahorrar espacio en el header móvil */
     }
 
-    .hero-subtitle {
-        font-size: 3.5em;
+    /* 🛑 NAVEGACIÓN COMPLETA (Menú Overlay) */
+    .navbar {
+        position: fixed;
+        top: 70px;
+        /* Debajo del header fijo */
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--background-dark);
+        display: none;
+        /* OCULTO POR DEFECTO */
+        padding-top: 20px;
+        z-index: 999;
+        overflow-y: auto;
     }
 
+    .navbar.active {
+        display: block;
+        /* MOSTRAR cuando JS añade la clase 'active' */
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        /* Lista vertical */
+        text-align: center;
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .navbar ul li {
+        margin: 0;
+        border-bottom: 1px solid var(--hover-dark);
+    }
+
+    .navbar ul li a {
+        padding: 15px 0;
+        font-size: 1.2em;
+    }
+
+    .navbar ul li a::after {
+        content: none;
+        /* Eliminar el subrayado animado en móvil */
+    }
+
+    /* Ajuste para el Dropdown en vista vertical */
+    .navbar .dropdown-content {
+        position: static;
+        /* Ya no es absoluto respecto al li, sino que fluye */
+        margin-top: 0;
+        min-width: 100%;
+        box-shadow: none;
+        border-top: none;
+        border-radius: 0;
+    }
+
+    .navbar .dropdown-content a {
+        padding-left: 40px;
+        /* Sangría para subenlaces */
+        background-color: var(--background-dark);
+    }
+
+    /* Restaurar el layout de otras secciones que modificaste */
     .hero-actions .btn {
         display: block;
         margin: 10px auto;
@@ -1066,5 +1095,46 @@ section:nth-child(even) {
 
     .call-to-action .cta-actions .btn {
         flex-basis: 100%;
+    }
+}
+
+/* RESPONSIVE MEDIA QUERIES ANTERIORES */
+@media (max-width: 1200px) {
+    .carousel-slide {
+        min-width: 25%;
+        /* Muestra 4 imágenes */
+    }
+
+    /* Ajuste de animación para 4 elementos */
+    @keyframes scroll-carousel {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+}
+
+@media (max-width: 992px) {
+    .hero-subtitle {
+        font-size: 4em;
+    }
+
+    .carousel-slide {
+        min-width: 33.33%;
+        /* Muestra 3 imágenes */
+    }
+
+    /* Ajuste de animación para 3 elementos */
+    @keyframes scroll-carousel {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-66.66%);
+        }
     }
 }
