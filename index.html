@@ -4,52 +4,265 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOLYLAND - Tu Portal de Aventura</title>
-    <link rel="icon" type="image/png" href="images/holyland_logo.png">
-
+    <title>Bienvenido a Holyland</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="shortcut icon" href="logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
-    <header class="hero-section minecraft-world-bg">
-        <video class="hero-video-background" src="videos/video1.mp4" autoplay muted loop playsinline
-            poster="images/image_c05705.jpg"></video>
-
-        <div class="hero-overlay-darken"></div>
-
-        <div class="hero-main-content">
-            <img src="images/holyland_logo.png" alt="Logo de HOLYLAND" class="main-logo">
-
-            <img src="images/holyland.png" alt="Título HOLYLAND" class="server-title-image">
-
-            <p class="tagline">¡El portal a tu próxima gran aventura!</p>
-
-            <div class="main-links-tray">
-                <a href="https://tienda.holylandmc.com" target="_blank" class="nav-img-btn">
-                    <img src="images/tienda.png" alt="Icono Tienda" class="nav-img">
-                    <span>Tienda</span>
-                </a>
-                <a href="https://discord.com/invite/KjY9WAUC85" target="_blank" class="nav-img-btn">
-                    <img src="images/discord.png" alt="Icono Discord" class="nav-img">
-                    <span>Discord</span>
-                </a>
-                <a href="normas.html" target="_blank" class="nav-img-btn">
-                    <img src="images/normas.png" alt="Icono Normas" class="nav-img">
-                    <span>Normas</span>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="#home">
+                    <img src="logo.png" alt="Holyland Logo">
                 </a>
             </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="#about">Sobre Nosotros</a></li>
+                    <li><a href="#faq">Preguntas</a></li>
+                    <li><a href="#modes">Modalidades</a></li>
+                    <li><a href="reglas.html">Reglas</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn">Guías <span class="arrow-down">&#9660;</span></a>
+                        <div class="dropdown-content">
+                            <a href="#">Ayuda (Próximamente)</a>
+                            <a href="#">Videos (Próximamente)</a>
+                            <a href="#">Tutoriales (Próximamente)</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <div class="header-buttons">
+                <a href="https://tienda.holylandmc.com" target="_blank" class="btn btn-primary">Tienda</a>
+                <a href="https://discord.holylandmc.com" target="_blank" class="btn btn-secondary">Discord</a>
+            </div>
+        </div>
+    </header>
 
-            <div class="ip-players-area minecraft-block-panel">
-                <p class="players-count"><i class="fas fa-users"></i> <span id="server-players-count">--/--</span></p>
-                <div class="ip-display-area">
-                    <span class="ip-address-text" id="serverIp">play.holylandmc.com</span>
-                    <button class="copy-ip-btn minecraft-button-ui"><i class="fas fa-copy"></i> Copiar IP</button>
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h2 class="hero-subtitle server-name">
+                    <span class="typewriter-text" data-text="HOLYLAND"></span>
+                </h2>
+                <p>¡Juega ahora dentro de tu comunidad favorita y disfruta de nuestras modalidades!</p>
+                <div class="hero-actions">
+                    <a href="https://tienda.holylandmc.com" target="_blank" class="btn btn-primary">Tienda</a>
+                    <a href="reglas.html" class="btn btn-secondary">Reglas</a>
+                    <div class="server-address">
+                        <a href="#" class="btn-address" id="copy-ip-button"
+                            data-ip="play.holylandmc.com">play.holylandmc.com</a>
+                    </div>
                 </div>
             </div>
 
+            <div class="scroll-down">
+                <a href="#about"><i class="fas fa-chevron-down"></i></a>
+            </div>
+
+        </section>
+
+        <section class="about-us" id="about">
+            <div class="container">
+                <h2 class="section-title reveal-item bottom">Sobre nosotros</h2>
+                <p class="section-subtitle reveal-item bottom">¡Aprende la historia de Holyland en este apartado!</p>
+                <div class="about-content">
+                    <div class="text-content reveal-item left">
+                        <h3>Nuestra historia</h3>
+                        <p>Holyland es una comunidad sólida desde 2022, donde la actividad nunca se detiene. Compatible
+                            con Java y Bedrock, aceptamos jugadores premium y no premium. Puedes jugar desde donde
+                            quieras, como quieras.</p>
+                        <p>¡Ofrecemos modos de juego variados y bien trabajados: Survival vanilla, Survival Custom,
+                            Survival vanilla, minijuegos y más!</p>
+                        <div class="stats">
+                            <div>
+                                <span>3+</span>
+                                <p>Años de diversión</p>
+                            </div>
+                            <div>
+                                <span id="player-count">...</span>
+                                <p>Jugadores conectados</p>
+                            </div>
+                            <div>
+                                <span id="discord-count">...</span>
+                                <p>Discord en línea</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="image-content reveal-item right">
+                        <img src="tuo.png" alt="Minecraft Skin">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq" id="faq">
+            <div class="container">
+                <h2 class="section-title reveal-item bottom">Preguntas frecuentes</h2>
+                <p class="section-subtitle reveal-item bottom">¡Aprende algunas preguntas frecuentes de Holyland en este
+                    apartado!</p>
+                <div class="faq-content">
+                    <div class="image-content reveal-item left">
+                        <img src="yosef.png" alt="Minecraft Skin">
+                    </div>
+                    <div class="faq-items reveal-item right">
+                        <div class="faq-item">
+                            <button class="accordion">¿En qué dispositivos puedo jugar?</button>
+                            <div class="panel">
+                                <p>Puedes jugar en cualquier dispositivo compatible con Minecraft Java o Bedrock,
+                                    incluyendo PC, consolas y dispositivos móviles.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="accordion">¿Puedo jugar desde TLauncher?</button>
+                            <div class="panel">
+                                <p>Sí, nuestro servidor es compatible con TLauncher.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="accordion">¿Puedo jugar desde Crafting and Building?</button>
+                            <div class="panel">
+                                <p>Sí, también puedes unirte a Holyland desde Crafting and Building.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="accordion">¿Puedo jugar con mis amigos?</button>
+                            <div class="panel">
+                                <p>¡Por supuesto! Invita a tus amigos y disfruten juntos de Holyland.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="accordion">¿En qué versión está el servidor?</button>
+                            <div class="panel">
+                                <p>El servidor es compatible con múltiples versiones, incluyendo las últimas de
+                                    Minecraft Java y Bedrock.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="accordion">Si me banean, ¿qué puedo hacer?</button>
+                            <div class="panel">
+                                <p>Si crees que tu baneo fue injusto, puedes apelar en nuestro Discord.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="accordion">¿Cómo me registro dentro del servidor?</button>
+                            <div class="panel">
+                                <p>Al entrar por primera vez, utiliza /register [contraseña] [contraseña] y luego /login
+                                    [contraseña] en futuras entradas.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="accordion">No me deja entrar, ¿qué hago?</button>
+                            <div class="panel">
+                                <p>Asegúrate de tener una conexión a internet estable, la versión correcta del juego y
+                                    revisa nuestro Discord para anuncios de mantenimiento.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="game-modes" id="modes">
+            <div class="container">
+                <h2 class="section-title reveal-item bottom">Modalidades</h2>
+                <p class="section-subtitle reveal-item bottom">¡Observa las modalidades de Holyland en este apartado!
+                </p>
+                <div class="modes-grid">
+                    <div class="mode-item reveal-item bottom">
+                        <img src="modalidad1.png" alt="Parkour Mode">
+                        <p>SURVIVAL CLASICO</p>
+                    </div>
+                    <div class="mode-item reveal-item bottom">
+                        <img src="modalidad2.png" alt="BoxPvP Mode">
+                        <p>SURVIVAL CUSTOM</p>
+                    </div>
+                    <div class="mode-item reveal-item bottom">
+                        <img src="modalidad3.png" alt="Survival Anárquico Mode">
+                        <p>SURVIVAL ANÁRQUICO</p>
+                    </div>
+                    <div class="mode-item reveal-item bottom">
+                        <img src="modalidad4.png" alt="Survival Clásico Mode">
+                        <p>ONEBLOCK</p>
+                    </div>
+                    <div class="mode-item reveal-item bottom">
+                        <img src="modalidad5.png" alt="Knockback FFA Mode">
+                        <p>PARTYGAMES</p>
+                    </div>
+                    <div class="mode-item reveal-item bottom">
+                        <img src="modalidad6.png" alt="Oneblock Mode">
+                        <p>FULLPVP</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="moments" id="moments">
+            <div class="container">
+                <h2 class="section-title reveal-item bottom">Momentos Holyland</h2>
+                <p class="section-subtitle reveal-item bottom">Algunas capturas de la comunidad y eventos del servidor.
+                </p>
+
+                <div class="carousel-container reveal-item bottom">
+                    <div class="carousel-track">
+                        <div class="carousel-slide"><img src="momento1.png" alt="Momento 1"></div>
+                        <div class="carousel-slide"><img src="momento2.png" alt="Momento 2"></div>
+                        <div class="carousel-slide"><img src="momento3.png" alt="Momento 3"></div>
+                        <div class="carousel-slide"><img src="momento4.png" alt="Momento 4"></div>
+                        <div class="carousel-slide"><img src="momento5.png" alt="Momento 5"></div>
+
+                        <div class="carousel-slide"><img src="momento1.png" alt="Momento 1"></div>
+                        <div class="carousel-slide"><img src="momento2.png" alt="Momento 2"></div>
+                        <div class="carousel-slide"><img src="momento3.png" alt="Momento 3"></div>
+                        <div class="carousel-slide"><img src="momento4.png" alt="Momento 4"></div>
+                        <div class="carousel-slide"><img src="momento5.png" alt="Momento 5"></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="call-to-action" id="shop">
+            <div class="container reveal-item bottom">
+                <div class="cta-box">
+                    <h3>¡ÚNETE Y VISITA LA TIENDA!</h3>
+                    <p>Apóyanos comprando rangos, llaves y más, o únete a nuestra comunidad de Discord.</p>
+                    <div class="cta-actions">
+                        <a href="https://tienda.holylandmc.com" target="_blank" class="btn btn-store">Tienda &mdash;</a>
+                        <a href="https://discord.holylandmc.com" target="_blank" class="btn btn-discord">Discord
+                            &mdash;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">
+                <img src="logo.png" alt="Holyland Logo">
+                <span>Holyland</span>
+            </div>
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="#about">Sobre Nosotros</a></li>
+                    <li><a href="#faq">Preguntas</a></li>
+                    <li><a href="#modes">Modalidades</a></li>
+                    <li><a href="#moments">Momentos</a></li>
+                    <li><a href="reglas.html">Reglas</a></li>
+                    <li><a href="#">Guías</a></li>
+                </ul>
+            </nav>
         </div>
-    </header>
+        <div class="copyright">
+            <p>&copy; 2025 Holyland. Todos los derechos reservados.</p>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
